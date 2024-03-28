@@ -1,0 +1,62 @@
+@import "./variables.scss";
+@import "./common/header.scss";
+@import "./common/banner.scss";
+@import "./common/navigation.scss";
+@import "./common/card.scss";
+@import "./common/categorySection.scss";
+@import "./pages/home.scss";
+@import "./pages/categoryPage.scss";
+@import "./common/footer.scss";
+@import "./pages/aboutUs.scss";
+@import "./pages/policy.scss";
+@import "./pages/fqa.scss";
+@import "./pages/terms.scss";
+@import "./pages/singleProduct.scss";
+@import "./pages/shop.scss";
+@import "./pages/ask.scss";
+@import "./pages/log-regist.scss";
+@import "./common/cartMini.scss";
+@import "./pages/cartPage.scss";
+@import "./pages/account.scss";
+@import "./common/cardOrder.scss";
+@import "./pages/myOrders.scss";
+@import "./pages/setting.scss";
+@import "./common/logoutDialog.scss";
+@import "./common/searchDialog.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $main-font;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html {
+  font-size: 16px;
+}
+
+h2 {
+  @include h2;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.container {
+  padding-inline: 9.25rem;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 430px) {
+}

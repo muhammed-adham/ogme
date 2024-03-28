@@ -1,0 +1,259 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "productName": "Ogme Drive 1",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "drive",
+      "images": [
+        "/images/products/drive-1.jpg",
+        "/images/products/drive-2.jpg",
+        "/images/products/drive-3.jpg"
+      ],
+      "onSale": {
+        "active": true,
+        "percentage": 10
+      },
+      "price": 100
+    },
+    {
+      "id": "2",
+      "productName": "Ogme Drive 2",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "drive",
+      "images": [
+        "/images/products/drive-1.jpg",
+        "/images/products/drive-2.jpg",
+        "/images/products/drive-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    },
+    {
+      "id": "3",
+      "productName": "Ogme Drive 3",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "drive",
+      "images": [
+        "/images/products/drive-1.jpg",
+        "/images/products/drive-2.jpg",
+        "/images/products/drive-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    },
+    {
+      "id": "4",
+      "productName": "Ogme Drive 4",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "drive",
+      "images": [
+        "/images/products/drive-1.jpg",
+        "/images/products/drive-2.jpg",
+        "/images/products/drive-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    },
+    {
+      "id": "5",
+      "productName": "Ogme Bottles 1",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "bottles",
+      "images": [
+        "/images/products/bottle-1.jpg",
+        "/images/products/bottle-2.jpg",
+        "/images/products/bottle-3.jpg"
+      ],
+      "onSale": {
+        "active": true,
+        "percentage": 10
+      },
+      "price": 100
+    },
+    {
+      "id": "6",
+      "productName": "Ogme Bottles 2",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "bottles",
+      "images": [
+        "/images/products/bottle-1.jpg",
+        "/images/products/bottle-2.jpg",
+        "/images/products/bottle-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    },
+    {
+      "id": "7",
+      "productName": "Ogme Bottles 3",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "bottles",
+      "images": [
+        "/images/products/bottle-1.jpg",
+        "/images/products/bottle-2.jpg",
+        "/images/products/bottle-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    },
+    {
+      "id": "8",
+      "productName": "Ogme Bottles 4",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "bottles",
+      "images": [
+        "/images/products/bottle-1.jpg",
+        "/images/products/bottle-2.jpg",
+        "/images/products/bottle-3.jpg"
+      ],
+      "onSale": {
+        "active": true,
+        "percentage": 10
+      },
+      "price": 1000
+    },
+    {
+      "id": "9",
+      "productName": "Ogme Glassware 1",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "glassware",
+      "images": [
+        "/images/products/glassware-1.jpg",
+        "/images/products/glassware-2.jpg",
+        "/images/products/glassware-3.jpg"
+      ],
+      "onSale": {
+        "active": true,
+        "percentage": 20
+      },
+      "price": 100
+    },
+    {
+      "id": "10",
+      "productName": "Ogme Glassware 2",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "glassware",
+      "images": [
+        "/images/products/glassware-1.jpg",
+        "/images/products/glassware-2.jpg",
+        "/images/products/glassware-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    },
+    {
+      "id": "11",
+      "productName": "Ogme Glassware 3",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "glassware",
+      "images": [
+        "/images/products/glassware-1.jpg",
+        "/images/products/glassware-2.jpg",
+        "/images/products/glassware-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    },
+    {
+      "id": "12",
+      "productName": "Ogme Glassware 4",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "glassware",
+      "images": [
+        "/images/products/glassware-1.jpg",
+        "/images/products/glassware-2.jpg",
+        "/images/products/glassware-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    },
+    {
+      "id": "13",
+      "productName": "Ogme Glassware 5",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+      "details": "Lorem ipsum dolor sit amet.",
+      "category": "glassware",
+      "images": [
+        "/images/products/glassware-1.jpg",
+        "/images/products/glassware-2.jpg",
+        "/images/products/glassware-3.jpg"
+      ],
+      "onSale": {
+        "active": false,
+        "percentage": 0
+      },
+      "price": 100
+    }
+  ],
+  "cartlist": [
+    {
+      "id": "344d",
+      "data": {
+        "id": "2",
+        "productName": "Ogme Drive 2",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, debitis unde? Dignissimos!",
+        "details": "Lorem ipsum dolor sit amet.",
+        "category": "drive",
+        "images": [
+          "/images/products/drive-1.jpg",
+          "/images/products/drive-2.jpg",
+          "/images/products/drive-3.jpg"
+        ],
+        "onSale": {
+          "active": false,
+          "percentage": 0
+        },
+        "price": 100
+      },
+      "quantity": 1,
+      "userId": "2b5a"
+    }
+  ],
+  "users": [
+    {
+      "id": "ec4c",
+      "name": "Adham",
+      "email": "muharaafat@gmail.com",
+      "phone": "01021915009",
+      "password": "fWvEwE7UCz5WtG9"
+    }
+  ],
+  "login": []
+}
