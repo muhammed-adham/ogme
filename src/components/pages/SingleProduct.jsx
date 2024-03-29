@@ -15,6 +15,7 @@ import { BsQuestionCircle, BsShareFill } from "react-icons/bs";
 import Card from "../common/Card";
 import { WishCountContext } from "../../context/WishCountContext";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const SingleProduct = () => {
   //========================================================================================Variables
@@ -40,9 +41,15 @@ const SingleProduct = () => {
   };
 
   //========================================================================================Fetch Data You May Also Like
-  const { data: categoryProducts } = useQuery("categoryProducts", () =>
+  const { data: categoryProducts ,isSuccess:SuccessData } = useQuery("categoryProducts", () =>
     getCategoryProducts("")
   );
+
+  const [stateRandomData, setStateRandomData]=useState()
+
+  useEffect(()=>{
+    setStateRandomData(categoryProducts)
+  })
 
   //========================================================================================set params to a variable
   // const[idParams,setIdParams]=useState(id)
@@ -91,17 +98,19 @@ const SingleProduct = () => {
   };
   //========================================================================================handle AddToCart Button
   const addToCartHandler = () => {
-    postProductToCart(stateData,quantity);
-    setWishCount((prev) => prev + 1);
-    toast.success("added successfuly");
+    Cookies.get('token')?
+    (postProductToCart(stateData,quantity),
+    setWishCount((prev) => prev + 1),
+    toast.success("added successfuly")):toast.error("Please Login")
   };
 
   const buyNowHandler = () => {
+    Cookies.get('token')?
     postProductToCart(stateData,quantity).then(() => {
       setWishCount((prev) => prev + 1);
       toast.success("added successfuly");
       navigate("/cartlist"), scroll(0, 0);
-    });
+    }):toast.error("Please Login")
   };
   //========================================================================================Quantity Handler
   const [quantity, setQuantity]= useState(1)
@@ -209,21 +218,21 @@ const SingleProduct = () => {
               {randomIdxs.map((rIdx, idx) => (
                 <Card
                   key={idx}
-                  productImage={categoryProducts?.data[rIdx].images}
-                  productName={categoryProducts?.data[rIdx].productName}
+                  productImage={stateRandomData?.data[rIdx].images}
+                  productName={stateRandomData?.data[rIdx].productName}
                   price={
-                    categoryProducts?.data[rIdx].price -
-                    (categoryProducts?.data[rIdx].onSale.percentage / 100) *
-                      categoryProducts?.data[rIdx].price
+                    stateRandomData?.data[rIdx].price -
+                    (stateRandomData?.data[rIdx].onSale.percentage / 100) *
+                      stateRandomData?.data[rIdx].price
                   }
                   oldPrice={
-                    categoryProducts?.data[rIdx].onSale.active
-                      ? categoryProducts?.data[rIdx].price
+                    stateRandomData?.data[rIdx].onSale.active
+                      ? stateRandomData?.data[rIdx].price
                       : null
                   }
                   onClick={() => {
                     navigate(
-                      `/shop/${categoryProducts?.data[rIdx].category}/${categoryProducts?.data[rIdx].id}`
+                      `/shop/${stateRandomData?.data[rIdx].category}/${stateRandomData?.data[rIdx].id}`
                     ),
                       scroll(0, 0);
                     onClickHandler(rIdx);

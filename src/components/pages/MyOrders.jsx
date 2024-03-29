@@ -5,8 +5,8 @@ const MyOrders = () => {
   return (
     <>
       <section className="my-orders-page">
-        <CardOrder processed={true} ready={true} out={true} />
-        <CardOrder processed={true}/>
+        <CardOrder processed={true} ready={false} out={false} />
+        <CardOrder processed={true} ready={true}/>
       </section>
     </>
   );
