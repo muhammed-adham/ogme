@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../common/Banner";
 import { useQuery } from "react-query";
 import { getCategoryProducts } from "../../utils/axiosConfig";
@@ -9,9 +9,18 @@ const OnSale = () => {
   //========================================================================================Variables
   const navigate = useNavigate();
   //========================================================================================Fetch Data
-  const { data } = useQuery(["OgmeProducts", ""], () =>
+  const { data, isSuccess } = useQuery(["OgmeProducts", ""], () =>
     getCategoryProducts("")
   );
+
+  const [onSaleProducts,setOnSaleProducts]=useState()
+
+  useEffect(()=>{
+    if(isSuccess){
+
+      setOnSaleProducts(data)
+    }
+  },[data])
 
   //=============================================================Return=================================================================//
   return (
