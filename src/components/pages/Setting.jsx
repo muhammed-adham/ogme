@@ -22,13 +22,11 @@ const Setting = () => {
     setStatUsereData({
       ...stateUserData,
       [e.target.name]: e.target.value,
-      
     });
 };
 
 const submitHandler = (e) => {
     e.preventDefault(); 
-    // console.log(stateUserData);
     patchUserData(stateUserData)
     toast.success('Updated Successfully')
   }
@@ -92,10 +90,24 @@ const submitHandler = (e) => {
                   type="text"
                   placeholder="Bulding No"
                 />
+                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
+                  defaultValue={stateUserData!==null?stateUserData?.floor:null}
+                  name="floor"
+                  id="floor"
+                  type="text"
+                  placeholder="Floor No"
+                />
+                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
+                  defaultValue={stateUserData!==null?stateUserData?.apt:null}
+                  name="apt"
+                  id="apt"
+                  type="text"
+                  placeholder="Apartment No"
+                />
               </form>
             </div>
           </div>
-          <input onKeyDown={enterKeyHandler} type="submit" value={"save all"} />
+          <input onKeyDown={enterKeyHandler} type="submit" value={"save all"} onClick={submitHandler}/>
         </div>
       </div>
     </>

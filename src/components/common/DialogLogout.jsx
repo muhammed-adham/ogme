@@ -1,11 +1,17 @@
 import Cookies from "js-cookie";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { WishCountContext } from "../../context/WishCountContext";
 
-const LogoutDialog = ({onDialog}) => {
+const DialogLogout = ({onDialog}) => {
+
   const navigate=useNavigate()
+
+  const {setWishCount}=useContext(WishCountContext)
+
   const logoutHandler=()=>{
     onDialog(false)
+    setWishCount(0)
     Cookies.remove('token')
     history.replaceState(null, "", "/"),
     navigate('/')
@@ -28,4 +34,4 @@ const LogoutDialog = ({onDialog}) => {
   );
 };
 
-export default LogoutDialog;
+export default DialogLogout;

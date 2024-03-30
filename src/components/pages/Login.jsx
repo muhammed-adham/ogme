@@ -43,18 +43,18 @@ const Login = () => {
     }
 
     //========================================================================================If Success
-    axiosLoginUser(userData).then(() => {
-      history.replaceState(null, "", "/"), //prevent go back after signup
-        Cookies.get("token") ? navigate("/") : null;
-        
-    });
+    else if(userEmail.value !== 0 && userPassword.value !== 0){
+      axiosLoginUser(userData).then(() => {
+        history.replaceState(null, "", "/"), //prevent go back after signup
+          Cookies.get("token") ? navigate("/") : null;
+          toast.success(`Welcome Back`)
+      });
+    }
   };
 
   //========================================================================================Handle input Data
   const [userData, setUserData] = useState({
-    name: "",
     email: "",
-    phone: "",
     password: "",
   });
 

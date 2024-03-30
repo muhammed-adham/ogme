@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { CiSettings } from "react-icons/ci";
 import { BsHandbag } from "react-icons/bs";
-import LogoutDialog from "../common/LogoutDialog";
+import DialogLogout from "../common/DialogLogout";
 import Cookies from "js-cookie";
 
 const Account = () => {
@@ -13,7 +13,6 @@ const Account = () => {
   };
   const logoutHandler = () => {
     setDialog((prev) => !prev);
-    console.log(dialog);
   };
   return (
     <>
@@ -63,7 +62,7 @@ const Account = () => {
               <Outlet />
             </div>
           </section>
-          {dialog ? <LogoutDialog onDialog={Close} /> : null }
+          {dialog ? <DialogLogout onDialog={Close} /> : null }
         </>
       ) : null}
     </>

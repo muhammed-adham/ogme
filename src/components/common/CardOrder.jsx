@@ -6,7 +6,7 @@ import {
   TbTruckDelivery,
 } from "react-icons/tb";
 
-const CardOrder = ({processed, ready, out, delivered}) => {
+const CardOrder = ({processed, ready, out, delivered, orderNumber, orderPrice, arrivalDate}) => {
   const [progress, setProgress] = useState();
   const orderStatus = {
     processed,
@@ -35,13 +35,13 @@ const CardOrder = ({processed, ready, out, delivered}) => {
       <div className="card-order-container">
         <div className="order-details">
           <div className="order-number info">
-            <b>Order</b> <p>#####</p>
+            <b>Order</b> <p>{orderNumber}</p>
           </div>
           <div className="total-price info">
-            <b>Total Price</b> <p>EGP 666</p>
+            <b>Total Price</b> <p>EGP {orderPrice}</p>
           </div>
           <div className="expected-arrival info">
-            <b>Expected Arrival</b> <p>11/11/2024</p>
+            <b>Expected Arrival</b> <p>{arrivalDate}</p>
           </div>
         </div>
         <div className="progress-bar">

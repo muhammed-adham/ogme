@@ -11,6 +11,10 @@ export const request = ({ ...option }) => {
   return axiosConfig(option).then(onSuccess).catch(onError);
 };
 
+//========================================================================================getAllProducts
+export const getAllProducts = async ()=>{
+  return await request({url:"/products"})
+}
 //========================================================================================getCategoryProducts
 export const getCategoryProducts = async (category) => {
   return await request({ url: `/products?category=${category}` });
@@ -45,7 +49,6 @@ export const GetUserData = async ()=>{
 }
 //========================================================================================Patch User Data
 export const patchUserData= async (data)=>{
-  console.log(data.id);
   return await request({url:`users/${data.id}`, method:"patch", data: data})
 }
 //========================================================================================Post User LOGIN
@@ -74,8 +77,25 @@ return await request({url:"/cartlist", method:"post", data:{data, quantity:quan,
 export const getCartlistProducts= async()=>{
   return await request({url:`cartlist?userId=${Cookies.get('daugid')}`})
 }
+//========================================================================================Patch Product On cartlist
+export const patchCartProduct=async (data)=>{
+  return await request({url:`cartlist/${data.id}`, method:"patch", data:data})
+}
+
 //========================================================================================Get Product from cartlist
 export const removeProductCart= async(id)=>{
   return await request({url:`cartlist/${id}`, method: "delete"})
+}
+//========================================================================================Empty artlist
+
+
+//========================================================================================Post UserOrders
+export const postUserOrder=async(data,total)=>{
+  return await request({url:'orders', method:"post", data:{data, userId:Cookies.get("daugid"), totalPrice:total}})
+}
+
+//========================================================================================Get UserOrders
+export const getUserOrder=async()=>{
+  return await request({url:`orders?userId=${Cookies.get('daugid')}`})
 }
 

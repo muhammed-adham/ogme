@@ -45,8 +45,8 @@ const Navigation = () => {
                 <div className="overlay-container">
                   <div className="overlay">
                     {overlayLinks.map((li, idx) => (
-                      <div className="link-container">
-                        <Link key={idx} to={li.path} onClick={()=>scroll(0,0)}>
+                      <div key={idx} className="link-container">
+                        <Link to={li.path} onClick={()=>scroll(0,0)}>
                           {li.label}
                         </Link>
                       </div>

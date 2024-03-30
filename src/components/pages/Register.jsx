@@ -10,7 +10,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   //========================================================================================ShowPassword
-  const[showPass, setShowPass]=useState()
+  const [showPass, setShowPass] = useState();
   //========================================================================================Variables
   const navigate = useNavigate();
 
@@ -51,10 +51,18 @@ const Register = () => {
     }
 
     //========================================================================================If Success
-    postNewUser(userData).then(() => {
-      history.replaceState(null, "", "/"), //prevent go back after signup
-        Cookies.get("token") ? navigate("/") : null;
-    });
+    else if (
+      userName.value !== 0 &&
+      userEmail.value !== 0 &&
+      userPhone.value !== 0 &&
+      userPassword.value !== 0
+    ) {
+      postNewUser(userData).then(() => {
+        history.replaceState(null, "", "/"), //prevent go back after signup
+          Cookies.get("token") ? navigate("/") : null;
+          toast.success(`Welcome ${userData.name}`)
+      });
+    }
   };
 
   //========================================================================================Handle input Data
@@ -87,7 +95,8 @@ const Register = () => {
           <div className="form-container">
             <form action="" onSubmit={submitHandler}>
               <div className="form-group">
-                <input onKeyDown={enterKeyHandler}
+                <input
+                  onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="name"
                   onChange={onChangeHandler}
@@ -98,7 +107,8 @@ const Register = () => {
                 />
               </div>
               <div className="form-group">
-                <input onKeyDown={enterKeyHandler}
+                <input
+                  onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="email"
                   onChange={onChangeHandler}
@@ -109,7 +119,8 @@ const Register = () => {
                 />
               </div>
               <div className="form-group">
-                <input onKeyDown={enterKeyHandler}
+                <input
+                  onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="tel"
                   onChange={onChangeHandler}
@@ -120,20 +131,23 @@ const Register = () => {
                 />
               </div>
               <div className="form-group form-pass">
-                <input onKeyDown={enterKeyHandler}
+                <input
+                  onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="off"
                   onChange={onChangeHandler}
                   name="password"
                   id="password"
-                  type={showPass?"text":"password"}
+                  type={showPass ? "text" : "password"}
                   placeholder="password"
                 />
-                <div className="eye-icon" onClick={()=>{setShowPass((prev)=>!prev)}}>
-                  {showPass?
-                    <FaEye />
-                  :
-                  <FaEyeSlash />}
+                <div
+                  className="eye-icon"
+                  onClick={() => {
+                    setShowPass((prev) => !prev);
+                  }}
+                >
+                  {showPass ? <FaEye /> : <FaEyeSlash />}
                 </div>
               </div>
               <input type="submit" value={"sign up"} />

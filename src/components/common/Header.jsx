@@ -19,7 +19,14 @@ const Header = () => {
   const {data:cartlistProducts}=useQuery("cartlistProducts",getCartlistProducts)
 
   useEffect(()=>{
-    setWishCount(cartlistProducts?.data.length)
+    
+    const totalQuantity = cartlistProducts?.data.reduce((total, product) => {
+      const quantity = product.quantity;
+      return total + quantity;
+    }, 0);
+
+    setWishCount(totalQuantity)
+
   },[cartlistProducts])
   //========================================================================================Variables
   const navigate = useNavigate();
@@ -35,9 +42,9 @@ const Header = () => {
           </div>
           <Navigation />
           <div className="account">
-            <div className="search" onClick={()=>{setSearchDialog((prev)=>!prev)}}>
+            {/* <div className="search" onClick={()=>{setSearchDialog((prev)=>!prev)}}>
               <IoIosSearch />
-            </div>
+            </div> */}
             {Cookies.get("token") ? (
               <>
                 <div className="cart-icon">

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import {
+  getAllProducts,
   getCategoryProducts,
   getSingleProduct,
   postProductToCart,
@@ -25,31 +26,34 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   //========================================================================================Fetch Main Data
-  const { data: singleProductData, isSuccess } = useQuery("singleProduct", () =>
-    getSingleProduct(id)
-  );
+  const { data: singleProductData, isSuccess: successSingleProductData } =
+    useQuery("singleProduct", () => getSingleProduct(id));
   const [stateData, setStateDate] = useState();
 
   useEffect(() => {
-    if (isSuccess) {
+    if (successSingleProductData) {
       setStateDate(singleProductData?.data);
     }
   }, [singleProductData]);
 
   const onClickHandler = (rIdx) => {
-    setStateDate(categoryProducts?.data[rIdx]);
+    setStateDate(allProducts?.data[rIdx]);
   };
 
   //========================================================================================Fetch Data You May Also Like
-  const { data: categoryProducts ,isSuccess:SuccessData } = useQuery("categoryProducts", () =>
-    getCategoryProducts("")
-  );
+  // const { data: categoryProducts, isSuccess: successedRandomData } = useQuery(
+  //   "categoryProducts",
+  //   () => getCategoryProducts("")
+  // );
 
-  const [stateRandomData, setStateRandomData]=useState()
-
-  useEffect(()=>{
-    setStateRandomData(categoryProducts)
-  })
+  const {data: allProducts, isSuccess:successedRandomData}=useQuery("allProducts", getAllProducts)
+  
+  const [stateRandomData, setStateRandomDate] = useState();
+  useEffect(() => {
+    if (successedRandomData) {
+      setStateRandomDate(allProducts?.data);
+    }
+  }, [allProducts]);
 
   //========================================================================================set params to a variable
   // const[idParams,setIdParams]=useState(id)
@@ -76,6 +80,7 @@ const SingleProduct = () => {
     const randomIdxs = getRandomIdxs(13, 3);
 
     setRandomIdxs(randomIdxs);
+
   }, [stateData]);
 
   //========================================================================================useState
@@ -94,35 +99,38 @@ const SingleProduct = () => {
   const shareBtnHandler = () => {
     const url = location.href;
     navigator.clipboard.writeText(url);
-    toast.success('Link has been copied to clipboard')
+    toast.success("Link has been copied to clipboard");
   };
   //========================================================================================handle AddToCart Button
   const addToCartHandler = () => {
-    Cookies.get('token')?
-    (postProductToCart(stateData,quantity),
-    setWishCount((prev) => prev + 1),
-    toast.success("added successfuly")):toast.error("Please Login")
+    Cookies.get("token")
+      ? (postProductToCart(stateData, quantity),
+        setWishCount((prev) => prev + quantity),
+        toast.success("added successfuly"))
+      : toast.error("Please Login");
   };
 
   const buyNowHandler = () => {
-    Cookies.get('token')?
-    postProductToCart(stateData,quantity).then(() => {
-      setWishCount((prev) => prev + 1);
-      toast.success("added successfuly");
-      navigate("/cartlist"), scroll(0, 0);
-    }):toast.error("Please Login")
+    Cookies.get("token")
+      ? postProductToCart(stateData, quantity).then(() => {
+          setWishCount((prev) => prev + quantity);
+          toast.success("added successfuly");
+          navigate("/cartlist"), scroll(0, 0);
+        })
+      : toast.error("Please Login");
   };
   //========================================================================================Quantity Handler
-  const [quantity, setQuantity]= useState(1)
+  const [quantity, setQuantity] = useState(1);
 
-  const plusBtn=()=>{
-    setQuantity((prev)=>prev+1)
-  }
-  
-  const minusBtn=()=>{
-    quantity>1?
-    setQuantity((prev)=>prev-1):null
-  }
+  const plusBtn = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const minusBtn = () => {
+    quantity > 1 ? setQuantity((prev) => prev - 1) : null;
+  };
+
+
 
   //==============================================================Return===========================================================//
   return (
@@ -176,9 +184,9 @@ const SingleProduct = () => {
               <div className="actions-container">
                 <div className="top-widget">
                   <div className="quantity">
-                    <AiOutlineMinus onClick={minusBtn}/>
+                    <AiOutlineMinus onClick={minusBtn} />
                     <p>{quantity}</p>
-                    <AiOutlinePlus onClick={plusBtn}/>
+                    <AiOutlinePlus onClick={plusBtn} />
                   </div>
                   <div className="add-to-cart" onClick={addToCartHandler}>
                     add to cart
@@ -215,30 +223,47 @@ const SingleProduct = () => {
           </div>
           <div className="cards-container">
             <div className="cards">
-              {randomIdxs.map((rIdx, idx) => (
-                <Card
-                  key={idx}
-                  productImage={stateRandomData?.data[rIdx].images}
-                  productName={stateRandomData?.data[rIdx].productName}
-                  price={
-                    stateRandomData?.data[rIdx].price -
-                    (stateRandomData?.data[rIdx].onSale.percentage / 100) *
-                      stateRandomData?.data[rIdx].price
+              {stateRandomData &&
+                stateRandomData.length > 0 &&
+                randomIdxs.map((rIdx, idx) => {
+                  const product = stateRandomData?.[rIdx];
+                  if (
+                    !product ||
+                    !product.images ||
+                    !product.productName ||
+                    !product.price ||
+                    !product.onSale ||
+                    !product.category ||
+                    !product.id
+                  ) {
+                    return null;
                   }
-                  oldPrice={
-                    stateRandomData?.data[rIdx].onSale.active
-                      ? stateRandomData?.data[rIdx].price
-                      : null
-                  }
-                  onClick={() => {
-                    navigate(
-                      `/shop/${stateRandomData?.data[rIdx].category}/${stateRandomData?.data[rIdx].id}`
-                    ),
-                      scroll(0, 0);
+
+                  const { images, productName, price, onSale, category, id } =
+                    product;
+
+                  const discountedPrice = onSale.active
+                    ? price - (onSale.percentage / 100) * price
+                    : price;
+
+                  const handleClick = () => {
+                    setQuantity(1)
+                    navigate(`/shop/${category}/${id}`);
+                    scroll(0, 0);
                     onClickHandler(rIdx);
-                  }}
-                />
-              ))}
+                  };
+
+                  return (
+                    <Card
+                      key={idx}
+                      productImage={images}
+                      productName={productName}
+                      price={discountedPrice}
+                      oldPrice={onSale.active ? price : null}
+                      onClick={handleClick}
+                    />
+                  );
+                })}
             </div>
           </div>
         </div>
