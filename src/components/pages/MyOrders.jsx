@@ -7,10 +7,12 @@ const MyOrders = () => {
   //========================================================================================Get UserOrders
   const [stateUserOrder, setStateUserOrder] = useState();
 
-  const { data: userOrder } = useQuery("userOrder", getUserOrder);
+  const { data: userOrder, isSuccess } = useQuery("userOrder", getUserOrder);
 
   useEffect(() => {
-    setStateUserOrder(userOrder?.data);
+    if(isSuccess){
+      setStateUserOrder(userOrder?.data);
+    }
   }, [userOrder]);
 
 
