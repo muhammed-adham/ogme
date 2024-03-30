@@ -117,13 +117,14 @@ const Cart = () => {
   const {data:userData}=useQuery("userData",GetUserData)
 
   const checkoutHandler=()=>{
-    console.log(userData.data);
     const user=userData?.data
     if(!user.address|| !user.city || !user.bulding || !user.floor || !user.apt){
       dialogHandler()
     }
     else
+    
     {postUserOrder([...CartProducts],calculateTotalPrice())
+
     toast.success('your order has been processed')
     CartProducts.map((el)=>{
       removeProductCart(el.id);
