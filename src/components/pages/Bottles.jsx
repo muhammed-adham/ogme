@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Banner from "../common/Banner";
 import { useQuery } from "react-query";
 import { getCategoryProducts } from "../../utils/axiosConfig";
 import Card from "../common/Card";
 import { useNavigate } from "react-router-dom";
+import CardXs from "../common/CardXs";
+import { MobileContext } from "../../context/MobileContext";
 
 /** === Bottles Category Page ===
  *
@@ -20,8 +22,10 @@ import { useNavigate } from "react-router-dom";
  *
  */
 const Bottles = () => {
-    //========================================================================================Variables
-    const navigate=useNavigate()
+  //========================================================================================Variables
+  const navigate = useNavigate();
+  const{isMobile}=useContext(MobileContext)
+
   //========================================================================================Fetch Data
 
   const { data } = useQuery(["ogmeBottles", "bottles"], () =>
@@ -44,17 +48,35 @@ const Bottles = () => {
           </p>
           <div className="cards-container">
             <div className="cards">
-              {data?.data.map((prd, idx) => (
-                <Card
-                  key={idx}
-                  productName={prd.productName}
-                  productImage={prd.images}
-                  price={prd.price-(prd.onSale.percentage/100*prd.price)}
-                  oldPrice={prd.onSale.active ? prd.price : null}
-                  onClick={()=>{navigate(`/shop/${prd.category}/${prd.id}`),scroll(0,0)}}
-
-                />
-              ))}
+              {data?.data.map((prd, idx) =>
+                isMobile ? (
+                  <CardXs
+                    key={idx}
+                    productName={prd.productName}
+                    productImage={prd.images}
+                    price={
+                      prd.price - (prd.onSale.percentage / 100) * prd.price
+                    }
+                    oldPrice={prd.onSale.active ? prd.price : null}
+                    onClick={() => {
+                      navigate(`/shop/${prd.category}/${prd.id}`), scroll(0, 0);
+                    }}
+                  />
+                ) : (
+                  <Card
+                    key={idx}
+                    productName={prd.productName}
+                    productImage={prd.images}
+                    price={
+                      prd.price - (prd.onSale.percentage / 100) * prd.price
+                    }
+                    oldPrice={prd.onSale.active ? prd.price : null}
+                    onClick={() => {
+                      navigate(`/shop/${prd.category}/${prd.id}`), scroll(0, 0);
+                    }}
+                  />
+                )
+              )}
             </div>
           </div>
         </div>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Banner from "../common/Banner";
 import Card from "../common/Card";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import CardXs from "../common/CardXs";
+import { MobileContext } from "../../context/MobileContext";
 
 /** === Suncatcher Category Page ===
  *
@@ -21,6 +23,8 @@ import { useNavigate } from "react-router-dom";
 const Suncatcher = () => {
     //========================================================================================Variables
     const navigate=useNavigate()
+    const{isMobile}=useContext(MobileContext)
+
   //========================================================================================Fetch Data
   const { data } = useQuery(["OgmeSuncatcher", "suncatcher"]);
 
@@ -42,13 +46,23 @@ const Suncatcher = () => {
             <div className="cards">
               <h1>Coming Soon..</h1>
               {/* {data?.data.map((prd, idx) => (
-                <Card
+                isMobile?
+                <CardXs
                   key={idx}
                   productName={prd.productName}
                   productImage={prd.images}
                   price={prd.price-(prd.onSale.percentage/100*prd.price)}
-                  oldPrice={prd.onSale.active?prd.price:null}
-                    onClick={()=>{navigate(`/shop/${prd.category}/${prd.id}`),scroll(0,0)}}
+                  oldPrice={prd.onSale.active ? prd.price : null}
+                  onClick={()=>{navigate(`/shop/${prd.category}/${prd.id}`),scroll(0,0)}}
+
+                />:
+                                <Card
+                  key={idx}
+                  productName={prd.productName}
+                  productImage={prd.images}
+                  price={prd.price-(prd.onSale.percentage/100*prd.price)}
+                  oldPrice={prd.onSale.active ? prd.price : null}
+                  onClick={()=>{navigate(`/shop/${prd.category}/${prd.id}`),scroll(0,0)}}
 
                 />
               ))} */}

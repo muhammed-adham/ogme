@@ -15,7 +15,7 @@ const Home = () => {
   //=============================================================Return=================================================================//
   return (
     <>
-      <Banner videoSrc={"images/banner/main-banner.mp4"}/>
+      <Banner videoSrc={"images/banner/main-banner.MP4"}/>
 
       <CategorySection
       categoryPagePath={"/shop/drive"}

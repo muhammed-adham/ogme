@@ -82,7 +82,7 @@ const Menu = () => {
                   <h2>Shop</h2>
                 </div>
                 {subMenuLinks.map((link, idx) => (
-                  <Link key={idx} to={link.path} onClick={()=>scroll(0,0)}>
+                  <Link key={idx} to={link.path} onClick={()=>(scroll(0,0),menuBtnHandler())}>
                     {link.label}
                   </Link>
                 ))}
