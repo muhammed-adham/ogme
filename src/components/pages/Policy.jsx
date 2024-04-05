@@ -1,13 +1,22 @@
 import React from "react";
 import Banner from "../common/Banner";
 
+/** === FQA ===
+ *
+ * This component represents the Frequently Asked Questions (FAQ) section.
+ *
+ * Layout:
+ * - .policy: The main container for the Policy section.
+ *   - .container: The container for the Policy content.
+ *     - .content-group: The container for each policy paragraph.
+ *       - <p>: A paragraph element containing the policy text.
+ *         - <b>: A bold element for the policy heading.
+ */
 const Policy = () => {
+
+  //=============================================================Return=================================================================//
   return (
     <>
-      {/* <Banner
-        imgSrc={"images/banner/banner-policy.jpg"}
-        currentPage={"policy"}
-      /> */}
       <section className="policy">
         <div className="container">
           <div className="content">

@@ -1,13 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+// import { useNavigate } from "react-router-dom";
 
-/** === DialogAddress === 
+/** === DialogForget Password === 
  * 
- * This componeny represent a dialog box used to ask user to provide addess details
- * It displays two options for GoToSetting or Cancel
+ * This componeny represent a dialog box used to reset user password
+ * It displays two options for recover or Cancel
  *
  * Usage:
- * - Cart Page
+ * - Login Page
  *
  * Layout:
  * - .dialog-address-container: The main container for the dialog element
@@ -17,28 +18,28 @@ import { useNavigate } from "react-router-dom";
  *    - options: Container for the dialog options
  *      - btn-dialog: The button element representing each dialog option
  */
-const DialogAddress = ({ onDialog }) => {
+const DialogForgetPass = ({onDialog}) => {
   //========================================================================================Variables
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
 
   //========================================================================================Handler
   //GoToSetting Action
   const addressDialogHandler = () => {
     onDialog(false);
-    navigate("/account/setting");
+    toast.success('Password reset email sent')
+    // navigate("/account/setting");
   };
-
-  //==================================================================Return======================================================//
   return (
     <>
-      <div className="dialog-address-container">
+      <div className="dialog-reset-container">
         <div className="dialog">
           <div className="message">
-            <h2>Please provide your Address details!</h2>
+            <h2>Forget Your Password?</h2>
           </div>
+          <input type="email" placeholder="Enter your email.."/>
           <div className="options">
             <div className="confirm btn-dialog" onClick={addressDialogHandler}>
-              Go to Settings
+              Reset
             </div>
             <div className="cancel btn-dialog" onClick={() => onDialog(false)}>
               Cancel
@@ -50,4 +51,4 @@ const DialogAddress = ({ onDialog }) => {
   );
 };
 
-export default DialogAddress;
+export default DialogForgetPass;

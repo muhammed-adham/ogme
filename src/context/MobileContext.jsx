@@ -6,7 +6,6 @@ const MobileProvider = ({ children }) => {
   const [isMobile, setIsMobile] = useState();
 
   const MobileHandler = (e) => {
-    console.log(e.matches);
     setIsMobile(e.matches);
   };
 
@@ -15,13 +14,11 @@ const MobileProvider = ({ children }) => {
       .matchMedia("(max-width:430px)")
       .addEventListener("change", MobileHandler);
     setIsMobile(window.matchMedia("(max-width:430px)").matches);
-  }, []);
+  },[]);
 
   return (
-    <MobileContext.Provider value={{ isMobile }}>
-      {children}
-    </MobileContext.Provider>
+    <MobileContext.Provider value={{isMobile}}>{children}</MobileContext.Provider>
   );
 };
 
-export default MobileProvider
+export default MobileProvider;

@@ -78,6 +78,14 @@
             }
           }
         }
+        .forget-password{
+          align-self: flex-end;
+          font-size: .9rem;
+          opacity: .5;
+          &:hover{
+            opacity: 1;
+          }
+        }
       }
       p {
         position: relative;

@@ -3,7 +3,9 @@
   height: 37rem;
   position: relative;
   video {
+    height: 100%;
     width: 100%;
+    object-fit: cover;
   }
   .crumbs-container {
     position: absolute;

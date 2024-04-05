@@ -3,10 +3,19 @@ import Banner from "../common/Banner";
 import CategorySection from "../common/CategorySection";
 import { Link } from "react-router-dom";
 
+/** === Home Page ===
+ *
+ * This component represents the Home Page
+ * it displays diffrent category sections with title ,card and a view all button
+ * 
+ *
+ */
 const Home = () => {
+
+  //=============================================================Return=================================================================//
   return (
     <>
-      <Banner videoSrc={"images/banner/main-banner.MP4"}/>
+      <Banner videoSrc={"images/banner/main-banner.mp4"}/>
 
       <CategorySection
       categoryPagePath={"/shop/drive"}

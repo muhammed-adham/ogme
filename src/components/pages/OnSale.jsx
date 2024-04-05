@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../common/Banner";
 import { useQuery } from "react-query";
-import { getCategoryProducts } from "../../utils/axiosConfig";
+import { getAllProducts } from "../../utils/axiosConfig";
 import Card from "../common/Card";
 import { useNavigate } from "react-router-dom";
 
+/** === Onsale Category Page ===
+ *
+ * This component represents a category page.
+ *
+ * Layout:
+ * - <Banner>: The customize banner component for the category page.
+ * - .category-Page: The main container for the category page.
+ *   - .container: The container for the page contents.
+ *     - .title: The paragraph element for the page title.
+ *     - .cards-container: The container for the cards displaying product information.
+ *       - .cards: The container for individual product cards.
+ *         - <Card>: The customize component representing a product card.
+ *
+ */
 const OnSale = () => {
   //========================================================================================Variables
   const navigate = useNavigate();
   //========================================================================================Fetch Data
-  const { data, isSuccess } = useQuery(["OgmeProducts", ""], () =>
-    getCategoryProducts("")
-  );
+  const { data, isSuccess } = useQuery("OgmeProducts",getAllProducts);
 
   const [onSaleProducts,setOnSaleProducts]=useState()
 
   useEffect(()=>{
     if(isSuccess){
 
-      setOnSaleProducts(data)
+      setOnSaleProducts(data?.data)
     }
   },[data])
 
@@ -38,7 +50,7 @@ const OnSale = () => {
           </p>
           <div className="cards-container">
             <div className="cards">
-              {data?.data.map((prd, idx) => {
+              {onSaleProducts?.map((prd, idx) => {
                 if (prd.onSale.active == true) {
                   return (
                     <Card

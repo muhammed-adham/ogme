@@ -3,12 +3,35 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+/** === Footer ===
+ * 
+ * This component represents a footer section
+ * 
+ * Layout:
+ * - Footer: The main container for the footer section.
+ *  - .form-footer: Container for the footer contents.
+ *    - title: Container for the title of the form-footer.
+ *      - h2: The heading element for the title.
+ *      - p: The paragraph element for description.
+ *    - .email-input: Container for input
+ *      - <input>: The input field for email
+ *   - widgets: Container for footer widgets.
+ *     - social-icons: Container for social media icons.
+ *       - Link: The link element for each social media icon.
+ *         - Svg: The SVG icon for the social media platform
+ *     - terms: Container for the terms link
+ *       - Link: The link element for terms
+*/
 const Footer = () => {
+
+  //Term Links
   const termLinks = [
     { path: "/policy", label: "Policy" },
     { path: "/terms", label: "Terms of Service" },
     { path: "/fqa", label: "FAQ" }
   ];
+
+  //==================================================================Return======================================================//
   return (
     <footer>
       <div className="form-footer">
@@ -27,13 +50,13 @@ const Footer = () => {
       </div>
       <div className="widgets">
         <div className="social-icons">
-          <Link to={"https://www.facebook.com/"} target="blank" className="icon-container">
+          <Link to={"https://www.facebook.com/ogmeofficial"} target="blank" className="icon-container">
             <FaFacebookF />
           </Link>
-          <Link to={"https://www.instagram.com/"} target="blank" className="icon-container">
+          <Link to={"https://www.instagram.com/ogmestore/"} target="blank" className="icon-container">
             <FaInstagram />
           </Link>
-          <Link to={"https://www.tiktok.com/en/"} target="blank" className="icon-container">
+          <Link to={"https://www.tiktok.com/@ogmeofficial?_t=8l7YLc0ALQr&_r=1"} target="blank" className="icon-container">
             <FaTiktok />
           </Link>
         </div>

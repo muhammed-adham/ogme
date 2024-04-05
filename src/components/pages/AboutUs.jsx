@@ -3,15 +3,23 @@ import Banner from "../common/Banner";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+/** === AboutUsPage ===
+ *
+ * This component represents the About Us page.
+ *
+ * Layout:
+ * - .about: The main container for the About Us page.
+ *   - .container: The container for the About Us content.
+ *     - .content*5: The repeated container for each block of content in the About Us section.
+ *     - <h2>: The heading element for the content block.
+ *     - <p>: The paragraph element for the content block.
+ */
+
 const AboutUs = () => {
 
-
+  //=============================================================Return==============================================================//
   return (
     <>
-      {/* <Banner
-        imgSrc={"/images/banner/banner-about.jpg"}
-        currentPage={"about us"}
-      /> */}
       <section className="about">
         <div className="container">
           <div className="content">
@@ -59,27 +67,15 @@ const AboutUs = () => {
             </div>
             <p>Muhammed Atef</p>
               <div className="social-icons">
+
                 <Link
-                  to={"https://www.facebook.com/"}
-                  target="blank"
-                  className="icon-container"
-                >
-                  <FaFacebookF />
-                </Link>
-                <Link
-                  to={"https://www.instagram.com/"}
+                  to={"https://www.instagram.com/muhammedatefabdelfattah/"}
                   target="blank"
                   className="icon-container"
                 >
                   <FaInstagram />
                 </Link>
-                <Link
-                  to={"https://www.tiktok.com/en/"}
-                  target="blank"
-                  className="icon-container"
-                >
-                  <FaTiktok />
-                </Link>
+ 
               </div>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.

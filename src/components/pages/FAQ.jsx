@@ -1,6 +1,21 @@
 import React from "react";
 
+/** === FQA ===
+ *
+ * This component represents the Frequently Asked Questions (FAQ) section.
+ *
+ * Layout:
+ * - .fqa: The main container for the FAQ section.
+ *   - .container: The container for the FAQ content.
+ *     - .content-group: The container for a single question and answer pair.
+ *       - .qui: The container for the question.
+ *         - <b>: The bold element for the question text.
+ *       - .ans: The container for the answer.
+ *         - Text: The text content for the answer.
+ */
 const FAQ = () => {
+
+  //=============================================================Return=================================================================//
   return (
     <>
       <section className="fqa">

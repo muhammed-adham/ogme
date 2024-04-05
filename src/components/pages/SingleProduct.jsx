@@ -17,11 +17,66 @@ import Card from "../common/Card";
 import { WishCountContext } from "../../context/WishCountContext";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import CardXs from "../common/CardXs";
+import { TabletContext } from "../../context/TabletContext";
+import { MobileContext } from "../../context/MobileContext";
 
+/**
+ *  * === SingleProduct Page ===
+ *
+ * This component represents the SingleProduct page.
+ *
+ * Layout:
+ * - .single-product: The main container for the SingleProduct page.
+ *   - .images-container: Container for the product images and carousel.
+ *     - .cover-image: Container for the main product image.
+ *       - <img>: The product image.
+ *     - .owl: Container for the carousel indicators.
+ *       - .carousel: The carousel indicator.
+ *     - .slide-arrows: Container for the slide arrows.
+ *       - IoIosArrowDropleftCircle: Left slide arrow.
+ *       - IoIosArrowDroprightCircle: Right slide arrow.
+ *   - .container: Container for the product information.
+ *     - section.section-product-info: Container for the main product information.
+ *       - .main-content-container: Container for the main content.
+ *         - .main-content: Container for the main content of the product.
+ *           - <h2>: The product name.
+ *           - .price: Container for the product price.
+ *             - <del>: The original price (if on sale).
+ *             - <b>: The discounted price.
+ *           - <p>: The product description.
+ *         - .actions-container: Container for the product actions.
+ *           - .top-widget: Container for the quantity and add to cart button.
+ *             - .quantity: Container for the quantity buttons.
+ *               - <svg>: Minus button to decrease quantity.
+ *               - <p>: The current quantity.
+ *               - <svg>: Plus button to increase quantity.
+ *             - .add-to-cart: Add to cart button.
+ *           - .buy-it-now: Buy it now button.
+ *           - .tertiary: Container for share and ask buttons.
+ *             - .share-btn: Share button.
+ *               - <svg>: Share icon.
+ *             - .ask-btn: Ask a question button.
+ *               - <svg>: Question icon.
+ *           - .details: Container for the product details.
+ *             - <p>: The product details.
+ *     - .may-also.category-page: Container for related products section.
+ *       - .title: Container for the section title.
+ *         - <h2>: The section title "you may also like".
+ *       - .cards-container: Container for the related product cards.
+ *         - .cards: Container for the individual related product cards.
+ *           - Card: Related product card component.
+ */
 const SingleProduct = () => {
   //========================================================================================Variables
   const navigate = useNavigate();
   const { wishCount, setWishCount } = useContext(WishCountContext);
+  const { isTablet } = useContext(TabletContext);
+  const {isMobile}= useContext(MobileContext)
+
+  const mayAlsoCount = isMobile==true ? 2 : 3;
+  
+
   //========================================================================================Params
   const { id } = useParams();
 
@@ -46,8 +101,11 @@ const SingleProduct = () => {
   //   () => getCategoryProducts("")
   // );
 
-  const {data: allProducts, isSuccess:successedRandomData}=useQuery("allProducts", getAllProducts)
-  
+  const { data: allProducts, isSuccess: successedRandomData } = useQuery(
+    "allProducts",
+    getAllProducts
+  );
+
   const [stateRandomData, setStateRandomDate] = useState();
   useEffect(() => {
     if (successedRandomData) {
@@ -68,7 +126,7 @@ const SingleProduct = () => {
     const idxs = [];
     while (idxs.length < count) {
       const randomIdx = Math.floor(Math.random() * max);
-      if (!idxs.includes(randomIdx) && randomIdx !== 2) {
+      if (!idxs.includes(randomIdx) && randomIdx !== id) {
         idxs.push(randomIdx);
       }
     }
@@ -77,10 +135,9 @@ const SingleProduct = () => {
 
   //===> Generate Random Idx Only one Time //<===
   useEffect(() => {
-    const randomIdxs = getRandomIdxs(13, 3);
+    const randomIdxs = getRandomIdxs(13, mayAlsoCount);
 
     setRandomIdxs(randomIdxs);
-
   }, [stateData]);
 
   //========================================================================================useState
@@ -113,9 +170,12 @@ const SingleProduct = () => {
   const buyNowHandler = () => {
     Cookies.get("token")
       ? postProductToCart(stateData, quantity).then(() => {
-          setWishCount((prev) => prev + quantity);
-          toast.success("added successfuly");
-          navigate("/cartlist"), scroll(0, 0);
+          return (
+            setWishCount((prev) => prev + quantity),
+            toast.success("added successfuly"),
+            navigate("/cartlist"),
+            scroll(0, 0)
+          );
         })
       : toast.error("Please Login");
   };
@@ -129,8 +189,6 @@ const SingleProduct = () => {
   const minusBtn = () => {
     quantity > 1 ? setQuantity((prev) => prev - 1) : null;
   };
-
-
 
   //==============================================================Return===========================================================//
   return (
@@ -247,13 +305,22 @@ const SingleProduct = () => {
                     : price;
 
                   const handleClick = () => {
-                    setQuantity(1)
+                    setQuantity(1);
                     navigate(`/shop/${category}/${id}`);
                     scroll(0, 0);
                     onClickHandler(rIdx);
                   };
 
-                  return (
+                  return isTablet ? (
+                    <CardXs
+                      key={idx}
+                      productImage={images}
+                      productName={productName}
+                      price={discountedPrice}
+                      oldPrice={onSale.active ? price : null}
+                      onClick={handleClick}
+                    />
+                  ) : (
                     <Card
                       key={idx}
                       productImage={images}

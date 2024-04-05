@@ -1,6 +1,19 @@
 import React from "react";
 
+/** 
+ * /** === Terms ===
+ *
+ * This component represents the terms section.
+ *
+ * Layout:
+ * - .terms: The main container for the Terms section.
+ *   - .container: The container for the Terms content.
+ *     - <h2>: The heading element for the content block.
+ *     - <p>: The paragraph element for the content block.
+ */
 const Terms = () => {
+
+  //=============================================================Return=================================================================//
   return (
     <>
       <section className="terms">

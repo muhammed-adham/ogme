@@ -6,14 +6,40 @@ import { BsHandbag } from "react-icons/bs";
 import DialogLogout from "../common/DialogLogout";
 import Cookies from "js-cookie";
 
+/* 
+/** === Account Page ===
+ *
+ * This component represents the ِccount page.
+ *
+ * Layout:
+ * - .account-page: The main container for the account page.
+ *   - .container: The container for the account page contents.
+ *     - .side-bar: The container for the side bar.
+ *       - .profile-picture: The container for the profile picture.
+ *         - <img>: The image element for the profile picture.
+ *       - .side-nav: The container for the side navigation.
+ *         - .nav-group: The container for each navigation group.
+ *           - <NavLink>: The link element for each navigation item.
+ *             - .icon: The container for the icon associated with the navigation item.
+ *             - text: The text for the navigation item.
+ *       - .log-out-btn: The button element for logging out.
+ *     - <Outlet>: The component representing the outlet for Setting Page and MyOrders Page.
+ *     - <DialogLogout>: The dialog component for logging out.
+ */
 const Account = () => {
-  const [dialog, setDialog] = useState(false);
-  const Close = (e) => {
-    setDialog((prev) => (prev = e));
-  };
+
+    //========================================================================================Variables
+    const [dialog, setDialog] = useState(false);
+    const Close = (e) => {
+      setDialog((prev) => (prev = e));
+    };
+
+    //========================================================================================Handlers
   const logoutHandler = () => {
     setDialog((prev) => !prev);
   };
+
+  //=============================================================Return==============================================================//
   return (
     <>
       {Cookies.get("token") ? (
@@ -21,11 +47,8 @@ const Account = () => {
           <section className="account-page">
             <div className="container">
               <div className="side-bar">
-                {/* <div className="page-title">
-              <h2>My Account</h2>
-            </div> */}
                 <div className="profile-picture">
-                  <img src="/images/pp.jpg" alt="profile picture" />
+                  <img src="/images/logo-white.jpg" alt="profile picture" />
                 </div>
                 <div className="side-nav">
                   <div className="nav-group">
@@ -37,15 +60,6 @@ const Account = () => {
                       My Orders
                     </NavLink>
                   </div>
-                  {/* <div className="nav-group">
-                <NavLink to={"/account/setting"}>
-                  <div className="icon">
-                    <MdOutlineAccountCircle />
-                  </div>
-                  My details
-                </NavLink>
-              </div> */}
-
                   <div className="nav-group">
                     <NavLink to={"/account/setting"}>
                       <div className="icon">

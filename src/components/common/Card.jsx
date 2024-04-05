@@ -1,43 +1,71 @@
 import React, { useEffect, useState } from "react";
 
-const Card = ({ productName, price, oldPrice, productImage, onClick, isDragging }) => {
+/** === Card ===
+ *
+ * This component represents a default card
+ * It displays product information image, description, price
+ *
+ * Usage:
+ * - CategorySection :This Banner is used within the CategorySection component to present individual categories on the Home page.
+ * - Shop Pages: This Banner is used in the Drive, Bottles, SunCatcher, Customize pages
+ *
+ * Layout:
+ * - .card: The main container for the card element
+ *  - .img-container: Container fot the image
+ *    - <img>: The image displayed within the card
+ *  - .desc: Container for the description and price
+ *    - <p>: The paragraph element containing the product name
+ *    - .price: The Price element
+ */
+const Card = ({
+  productName,
+  price,
+  oldPrice,
+  productImage,
+  onClick,
+  isDragging,
+}) => {
   //========================================================================================States
-  const [hovered, setHovered] = useState(false);
-  const [imgIdx, setImgIdx] = useState(0);
-  const [intervalId, setIntervalId] = useState(null);
+  const [hovered, setHovered] = useState(false); //Mouse Hovering Over Card Image
 
-  //========================================================================================Handel Hover State
+  const [imgIdx, setImgIdx] = useState(0); //Images Index Controller
+
+  const [intervalId, setIntervalId] = useState(null); // Global Interval Function
+
+  //========================================================================================Handlers
+  //  Hover Handler
   const handleHover = () => {
     setHovered((prev) => !prev);
   };
 
-  //========================================================================================Change Card Image On Hover
+  //Change Card Image On Hover
   const startHoverInterval = () => {
     setImgIdx(imgIdx + 1);
     const id = setInterval(() => {
       setImgIdx((prevIndex) => {
-        const nextIndex = prevIndex + 1; //Giving the state a variable so if statement can check it immediately
+        const nextIndex = prevIndex + 1; //Giving the state a variable so if statement can check it immediately//
         if (nextIndex >= 3) {
           setImgIdx(0);
         }
-        return nextIndex; // the return refer to the setImgIdx value
+        return nextIndex; //The return refer to the setImgIdx value//
       });
     }, 2000);
     setIntervalId(id);
   };
 
-  //========================================================================================Keep Tracking Hover State
+  //========================================================================================UseEffect
+  //Handle Image Change On Hover
   useEffect(() => {
-
-    if (hovered && !isDragging) {//prevent changing picture while dragging
+    //Prevent Change Image while Dragging//
+    if (hovered && !isDragging) {
       startHoverInterval();
     } else {
       clearInterval(intervalId);
       setImgIdx(0);
     }
-  }, [hovered,isDragging]);
-  //=====================================================================Return======================================================//
+  }, [hovered, isDragging]);
 
+  //==================================================================Return======================================================//
   return (
     <>
       <div
@@ -49,7 +77,7 @@ const Card = ({ productName, price, oldPrice, productImage, onClick, isDragging 
         <div className="img-container">
           <img
             draggable="false"
-            src={productImage?productImage[imgIdx]:null}// prevent too Many Errors
+            src={productImage ? productImage[imgIdx] : null} // Prevent Delay Errors
             alt="product image"
             className="image-nd"
           />
@@ -58,7 +86,9 @@ const Card = ({ productName, price, oldPrice, productImage, onClick, isDragging 
           <p>{productName}</p>
           <div className="price">
             <span>
-              <del>{oldPrice?"EGP":null} {oldPrice}</del>
+              <del>
+                {oldPrice ? "EGP" : null} {oldPrice}
+              </del>
               EGP {price}
             </span>
           </div>

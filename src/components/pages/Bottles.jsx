@@ -5,6 +5,20 @@ import { getCategoryProducts } from "../../utils/axiosConfig";
 import Card from "../common/Card";
 import { useNavigate } from "react-router-dom";
 
+/** === Bottles Category Page ===
+ *
+ * This component represents a category page.
+ *
+ * Layout:
+ * - <Banner>: The customize banner component for the category page.
+ * - .category-Page: The main container for the category page.
+ *   - .container: The container for the page contents.
+ *     - .title: The paragraph element for the page title.
+ *     - .cards-container: The container for the cards displaying product information.
+ *       - .cards: The container for individual product cards.
+ *         - <Card>: The customize component representing a product card.
+ *
+ */
 const Bottles = () => {
     //========================================================================================Variables
     const navigate=useNavigate()

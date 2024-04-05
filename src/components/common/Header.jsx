@@ -1,37 +1,58 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navigation from "./Navigation";
 import { BsHandbag } from "react-icons/bs";
-import { IoIosSearch } from "react-icons/io";
 import { NavLink, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { WishCountContext } from "../../context/WishCountContext";
 import { getCartlistProducts } from "../../utils/axiosConfig";
 import { useQuery } from "react-query";
-import SearchDialog from "./SearchDialog";
 
+/** === Header ===
+ *
+ * This component represents a header section
+ *
+ * Layout:
+ * - header: The main container for the header section.
+ *  - .container: Container for the form-related header content.
+ *    - .logo: Container for the logo image.
+ *    - <Navigation>: A component for navigation links.
+ *    - .account: The container for the account-related elements
+ *      - .cart-icon: The container for the cart icon, which navigates to the cart list page
+ *        - <NavLink>: The link element for the cart list page.
+ *           - <svg>: The icon for the cart.
+ *        - <span>: The span element displaying the count of items in the cart.
+ *      - .profile: The container for the user profile picture, which navigates to the account orders page when clicked.
+ *        - img: The image element for the profile picture.
+ *      - log-regist: The container for the login and register links.
+ *       - NavLink: The link element for the login page.
+ *       - span: The span element for the separator ("/").
+ *       - NavLink: The link element for the register page.
+ */
 const Header = () => {
-  //========================================================================================Search Handler
-  const[searchDialog,setSearchDialog]=useState(false)
-  const Close=(Close)=>{
-    setSearchDialog((prev)=>prev=Close)
-  }
-  //========================================================================================cartListProducts
-  const {data:cartlistProducts}=useQuery("cartlistProducts",getCartlistProducts)
+  //========================================================================================Variables
+  const navigate = useNavigate();
+  const { wishCount, setWishCount } = useContext(WishCountContext);
 
-  useEffect(()=>{
-    
+  //========================================================================================API
+  //CartProducts for Wish Counter
+  const { data: cartlistProducts } = useQuery(
+    "cartlistProducts",
+    getCartlistProducts
+  );
+
+  //========================================================================================UseEffect
+  //WishCounter
+  useEffect(() => {
+    //TotalCount DependOn Quantity of EachProduct in the Cart
     const totalQuantity = cartlistProducts?.data.reduce((total, product) => {
       const quantity = product.quantity;
       return total + quantity;
     }, 0);
 
-    setWishCount(totalQuantity)
+    //Set WishCounter
+    setWishCount(totalQuantity);
+  }, [cartlistProducts]);
 
-  },[cartlistProducts])
-  //========================================================================================Variables
-  const navigate = useNavigate();
-  const { wishCount,setWishCount } = useContext(WishCountContext);
-  
   //===============================================================Return===============================================================//
   return (
     <>
@@ -42,9 +63,6 @@ const Header = () => {
           </div>
           <Navigation />
           <div className="account">
-            {/* <div className="search" onClick={()=>{setSearchDialog((prev)=>!prev)}}>
-              <IoIosSearch />
-            </div> */}
             {Cookies.get("token") ? (
               <>
                 <div className="cart-icon">
@@ -53,8 +71,13 @@ const Header = () => {
                   </NavLink>
                   {wishCount > 0 ? <span>{wishCount}</span> : null}
                 </div>
-                <div className="profile" onClick={()=>{navigate('/account/orders')}}>
-                  <img src="/images/pp.jpg" alt="profile picture" />
+                <div
+                  className="profile"
+                  onClick={() => {
+                    navigate("/account/orders");
+                  }}
+                >
+                  <img src="/images/logo-white.jpg" alt="profile picture" />
                 </div>
               </>
             ) : (
@@ -67,9 +90,6 @@ const Header = () => {
           </div>
         </div>
       </header>
-      {searchDialog?
-        <SearchDialog CloseEvent={Close}/>
-      :null}
     </>
   );
 };

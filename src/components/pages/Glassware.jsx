@@ -5,6 +5,20 @@ import { useQuery } from "react-query";
 import { getCategoryProducts } from "../../utils/axiosConfig";
 import { useNavigate } from "react-router-dom";
 
+/** === Glassware Category Page ===
+ *
+ * This component represents a category page.
+ *
+ * Layout:
+ * - <Banner>: The customize banner component for the category page.
+ * - .category-Page: The main container for the category page.
+ *   - .container: The container for the page contents.
+ *     - .title: The paragraph element for the page title.
+ *     - .cards-container: The container for the cards displaying product information.
+ *       - .cards: The container for individual product cards.
+ *         - <Card>: The customize component representing a product card.
+ *
+ */
 const Glassware = () => {
     //========================================================================================Variables
     const navigate=useNavigate()

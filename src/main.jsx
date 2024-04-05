@@ -2,15 +2,19 @@ import React from "react";
 import ReactDom from "react-dom/client";
 import "./styles/app.scss";
 import App from "./App";
-import MobileProvider from "./context/MobileContext";
+import TabletProvider from "./context/TabletContext";
 import WishCountProvider from "./context/WishCountContext";
+import MobileProvider from "./context/MobileContext";
 
 ReactDom.createRoot(document.getElementById("root")).render(
+  //My Contexts
   <React.StrictMode>
     <WishCountProvider>
-      <MobileProvider>
+      <TabletProvider>
+        <MobileProvider>
         <App />
-      </MobileProvider>
+        </MobileProvider>
+      </TabletProvider>
     </WishCountProvider>
   </React.StrictMode>
 );

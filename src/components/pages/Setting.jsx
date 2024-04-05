@@ -3,6 +3,33 @@ import { useQuery } from "react-query";
 import { GetUserData, patchUserData } from "../../utils/axiosConfig";
 import toast from "react-hot-toast";
 
+/** === Setting Page ===
+ *
+ * This component represents the Setting page.
+ *
+ * Layout:
+ * - .setting-page: The main container for the Setting page.
+ *   - .container-setting: The container for the page content.
+ *     - .profile.info-container: Container for the profile information section.
+ *       - .title: Container for the title "profile information".
+ *         - <h2>: The title "profile information".
+ *       - .form-container: Container for the profile information form.
+ *         - <form>: The profile information form.
+ *           - <input>: Input field for the user's name.
+ *           - <input>: Input field for the user's email.
+ *           - <input>: Input field for the user's phone number.
+ *     - .address.info-container: Container for the address section.
+ *       - .title: Container for the title "address".
+ *         - <h2>: The title "address".
+ *       - .form-container: Container for the address form.
+ *         - <form>: The address form.
+ *           - <input>: Input field for the user's address.
+ *           - <input>: Input field for the user's city.
+ *           - <input>: Input field for the building number.
+ *           - <input>: Input field for the floor number.
+ *           - <input>: Input field for the apartment number.
+ *     - <input>: Submit button for saving the changes made in the profile information and address forms.
+ */
 const Setting = () => {
   //========================================================================================GetUser Data from Api
   const [stateUserData, setStatUsereData] = useState();

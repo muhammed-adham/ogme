@@ -21,26 +21,17 @@ header {
       gap: 2.5rem;
       width: 12rem;
       justify-content: flex-end;
-
-      .search {
-        font-size: 2rem;
-        opacity: 0.5;
-        cursor: pointer;
-        &:hover {
-          opacity: 1;
-        }        
-      }
-      .cart-icon{
+      .cart-icon {
         position: relative;
-        a{
+        a {
           font-size: 2rem;
           opacity: 0.5;
           cursor: pointer;
-          &.active{
+          &.active {
             opacity: 1 !important;
           }
         }
-        span{
+        span {
           display: flex;
           justify-content: center;
           line-height: 1rem;
@@ -51,43 +42,35 @@ header {
           color: white;
           position: absolute;
           top: 0;
-          right: -.6rem;
+          right: -0.6rem;
         }
       }
-      // .search{
-      //   svg{
-      //     transition: .4s all ease;
-      //     &:hover{
-      //       transform: translate(.5rem, -.25rem) rotateZ(50deg);
-      //     }
-      //   }
-      // }
       .profile {
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
         overflow: hidden;
         cursor: pointer;
-
+        border: 1.2px solid;
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
       }
-      .log-regist{
+      .log-regist {
         display: flex;
-        gap: .5rem;
+        gap: 0.5rem;
         @include ff-link;
-        span{
-          opacity: .5;
+        span {
+          opacity: 0.5;
         }
-        a{
-          opacity: .5;
-          &:hover{
+        a {
+          opacity: 0.5;
+          &:hover {
             opacity: 1;
           }
-          &.active{
+          &.active {
             opacity: 1;
           }
         }

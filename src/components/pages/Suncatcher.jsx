@@ -4,6 +4,20 @@ import Card from "../common/Card";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
+/** === Suncatcher Category Page ===
+ *
+ * This component represents a category page.
+ *
+ * Layout:
+ * - <Banner>: The customize banner component for the category page.
+ * - .category-Page: The main container for the category page.
+ *   - .container: The container for the page contents.
+ *     - .title: The paragraph element for the page title.
+ *     - .cards-container: The container for the cards displaying product information.
+ *       - .cards: The container for individual product cards.
+ *         - <Card>: The customize component representing a product card.
+ *
+ */
 const Suncatcher = () => {
     //========================================================================================Variables
     const navigate=useNavigate()

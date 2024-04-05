@@ -88,7 +88,8 @@
           }
           .add-to-cart{
             @include  btn-pr-default;
-            width:18rem;
+            min-width:18rem;
+            width: 100%
           }
         }
         .buy-it-now{
@@ -97,6 +98,7 @@
         }
         .tertiary{
           display: flex;
+          justify-content: flex-end;
           gap: 2rem;
           .share-btn{
             @include btn-tr;

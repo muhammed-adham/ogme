@@ -2,65 +2,54 @@ import React, { useEffect, useRef, useState } from "react";
 import Card from "./Card";
 import { useQuery } from "react-query";
 import { getCategoryProducts } from "../../utils/axiosConfig";
-// import {
-//   IoIosArrowDropleftCircle,
-//   IoIosArrowDroprightCircle,
-// } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 
+/** === Category Section ===
+ * 
+ * This container represent a custom category section 
+ * it used to display a section with title ,card and a view all button
+ * 
+ * Usasge:
+ * - Home Page
+ * 
+ * Layout:
+ * - container: The main container for the category section
+ *  - .home-section: The container for the section content
+ *    - .title: Container for the title of the section
+ *      - <h2>: The heading element for the title
+ *      - <p>: The paragraph element for the description
+ *    - .cards-container: Container for the cards within the section
+ *      - .cards: The cards displayed within the container
+ *    - <Link>: The link element for navigating to more category-related content
+*/
 const CategorySection = ({
   sectionCategory,
   sectionTitle,
   sectionDescription,
   categoryPagePath,
 }) => {
-  //========================================================================================Variables
-  const navigate = useNavigate();
-  //========================================================================================fetch Data from API
+
+  //========================================================================================API
   const { data } = useQuery(["Category", sectionCategory], () =>
-    // for seacrh
     getCategoryProducts(sectionCategory)
   );
 
-  //   const { data } = useQuery("Category", () =>
-  //   getCategoryProducts(sectionCategory)
-  // );
+  //========================================================================================Variables
+  const navigate = useNavigate();
 
-  const cardsLength = data?.data.length; //===>Cards Length
+  //Data Length
+  const cardsLength = data?.data.length; 
 
-  //========================================================================================Cards Arrows Slide TranslateX Handler
-  //========================================================================================States
-  // const [translateIdx, setTranslateIdx] = useState(0);
-  // const [cardsOnView, setCardsOnView] = useState(3);
-  // const [arrowDisabled, setArrowDisabled] = useState(false);
-  // //========================================================================================Functions
-  // const rightArrowHandler = () => {
-  //   setTranslateIdx(
-  //     cardsLength - cardsOnView <= translateIdx
-  //       ? translateIdx
-  //       : (prev) => prev + 1
-  //   );
-  // };
-
-  // const leftArrowHandler = () => {
-  //   setTranslateIdx(translateIdx == 0 ? translateIdx : (prev) => prev - 1);
-  // };
-
-  // useEffect(() => {
-  //   setArrowDisabled(cardsLength - cardsOnView <= translateIdx ? true : false); //===>Set Right Arrow Disable Class
-
-  //   cardsContainer.current.scrollLeft = translateIdx * 392; //===>fixed TranslateX to Scroll cards onClick Arrows
-  // }, [translateIdx]);
-
-  //========================================================================================Cards Drag Slide TranslateX Handler
+  //========================================================================================Handler
+  //Cards Drag Handler
   const [mouseDown, setMouseDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeftState, setScrollLeftState] = useState(null);
   const [mouseMoved, setMouseMoved] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const cardsContainer = useRef(); //References To Div Cards
 
-  const cardsContainer = useRef();
-
+  //Mouse Down Handlers
   const mouseDownHandler = (e) => {
     setMouseDown(true);
     if (e.pageX === undefined) {
@@ -72,6 +61,7 @@ const CategorySection = ({
     setMouseMoved(0);
   };
 
+  //Mouse Move Handlers
   const mouseMoveHandler = (e) => {
     if (!mouseDown) {
       return;
@@ -87,17 +77,18 @@ const CategorySection = ({
     setMouseMoved(currentMousePositionInsideCardsContainer - startX);
   };
 
+  //========================================================================================UseEffect
+  //Makes the effect take place [repostion the draggable container]
   useEffect(() => {
-    //thats what makes the effect take place// repostion the draggable container
     cardsContainer.current.scrollLeft = scrollLeftState - mouseMoved;
   }, [mouseDown, startX, scrollLeftState, mouseMoved]);
 
+  // Active Mouse click after Drag end ==> CardComponent
   useEffect(() => {
-    // active mouse click after drag end
     setIsDragging(false);
   }, [mouseDown]);
 
-  //=============================================================Return=================================================================//
+  //=============================================================Return==============================================================//
   return (
     <>
       <div className="container">
@@ -158,16 +149,6 @@ const CategorySection = ({
           >
             view all products
           </Link>
-          {/* <div className="arrows">
-            <IoIosArrowDropleftCircle
-              className={translateIdx == 0 ? "disabled" : null}
-              onClick={leftArrowHandler}
-            />
-            <IoIosArrowDroprightCircle
-              className={arrowDisabled ? "disabled" : null}
-              onClick={rightArrowHandler}
-            />
-          </div> */}
         </section>
       </div>
     </>

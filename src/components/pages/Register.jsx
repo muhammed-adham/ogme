@@ -8,6 +8,36 @@ import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+/** === Register Page ===
+ *
+ * This component represents the Register page.
+ *
+ * Layout:
+ * - .log-regist-page: The main container for the Register page.
+ *   - .container: The container for the page content.
+ *     - .title: Container for the title and login link.
+ *       - <h2>: The title "sign up".
+ *       - <p>: Text indicating an existing account with a link to the login page.
+ *     - .form-container: Container for the sign-up form and social login options.
+ *       - <form>: The sign-up form.
+ *         - .form-group: Container for each form field.
+ *           - <input>: Input field for the full name.
+ *           - <input>: Input field for the email address.
+ *           - <input>: Input field for the mobile number.
+ *           - .form-group: Container for the password input field and show/hide password toggle.
+ *             - <input>: Input field for the password.
+ *             - .eye-icon: Container for the show/hide password toggle.
+ *               - <svg>: Icon for showing or hiding the password.
+ *         - input: Submit button for the sign-up form.
+ *       - <p>: Text indicating alternative sign-up options.
+ *       - .outh: Container for social login options.
+ *         - <GoogleLogin>: Component for signing up with Google.
+ *         - <FacebookLogin>: Component for signing up with Facebook.
+ *         - <div.apple-btn>: Container for signing up with Apple.
+ *           - <AppleLogin>: Component for signing up with Apple.
+ *     - .you-agree: Container for the terms and privacy policy information.
+ *       - <p>: Text with links to the Terms of Use and Privacy Policy.
+ */
 const Register = () => {
   //========================================================================================ShowPassword
   const [showPass, setShowPass] = useState();

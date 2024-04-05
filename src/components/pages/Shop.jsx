@@ -1,7 +1,13 @@
 import React from 'react'
 import Banner from '../common/Banner'
 
+/** === Shop Page ===
+ *
+ * This component represents the Not Found Page of The Shop.
+ */
 const Shop = () => {
+
+  //=============================================================Return=================================================================//
   return (
     <>
     <section className="shop-page">

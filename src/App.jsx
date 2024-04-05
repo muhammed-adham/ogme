@@ -25,8 +25,11 @@ import MyOrders from "./components/pages/MyOrders";
 import Setting from "./components/pages/Setting";
 
 const App = () => {
+
+  //Query To Use Axios APIs
   const client = new QueryClient();
 
+  //All Routes
   const Router = createBrowserRouter([
     {
       path: "/",
@@ -48,7 +51,6 @@ const App = () => {
         { path: "/register", element: <Register /> },
         { path: "/login", element: <Login /> },
         { path: "/cartlist", element: <Cart /> },
-        // { path: "/orders", element: <Account /> },
         { path: "/account", element: <Account /> ,children:[
           {path: 'orders', element: <MyOrders/>},
           {path: 'setting', element: <Setting/>}

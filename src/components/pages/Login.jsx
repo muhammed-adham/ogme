@@ -7,11 +7,42 @@ import { axiosLoginUser, postNewUser } from "../../utils/axiosConfig";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import DialogForgetPass from "../common/DialogForgetPass";
 
-
+/** === Log Page ===
+ *
+ * This component represents a login page.
+ *
+ * Layout:
+ * - .log-regist-page: The main container for the login and registration page.
+ *   - .container: The container for the page content.
+ *     - .title: The container for the page title and signup link.
+ *       - <h2>: The heading element for the login title.
+ *       - <p>: The paragraph element containing the signup link.
+ *         - <Link>: The link to the registration page.
+ *     - .form-container: The container for the login form.
+ *       - .form: The login form element.
+ *         - .form-group: The container for an input field.
+ *           - <input>: The input field for the email address.
+ *         - .form-group .form-pass: The container for the password input field.
+ *           - <input>: The input field for the password.
+ *           - .eye-icon: The container for the password visibility toggle.
+ *             - FaEye or FaEyeSlash: The icon for showing or hiding the password.
+ *         - <Link>: Link to Forget Password page
+ *         - <input: The submit button for the login form.
+ *       - <p>: The paragraph element for the "or" text.
+ *       - .outh: The container for the external login options.
+ *         - <GoogleLogin>: The component for logging in with Google.
+ *         - <FacebookLogin>: The component for logging in with Facebook.
+ *         - .apple-btn: The container for the Apple login button.
+ *           - <AppleLogin>: The component for logging in with Apple.
+ *     - .you-agree: The container for the Terms of Use and Privacy Policy links.
+ *       - Link: The link to the Terms of Use page.
+ *       - Link: The link to the Privacy Policy page.
+ * */
 const Login = () => {
-    //========================================================================================ShowPassword
-    const[showPass, setShowPass]=useState()
+  //========================================================================================ShowPassword
+  const [showPass, setShowPass] = useState();
   //========================================================================================Variables
   const navigate = useNavigate();
 
@@ -43,11 +74,11 @@ const Login = () => {
     }
 
     //========================================================================================If Success
-    else if(userEmail.value !== 0 && userPassword.value !== 0){
+    else if (userEmail.value !== 0 && userPassword.value !== 0) {
       axiosLoginUser(userData).then(() => {
         history.replaceState(null, "", "/"), //prevent go back after signup
           Cookies.get("token") ? navigate("/") : null;
-          toast.success(`Welcome Back`)
+        toast.success(`Welcome Back`);
       });
     }
   };
@@ -63,6 +94,16 @@ const Login = () => {
       ...userData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  //========================================================================================Dialog Handler
+  const [dialog, setDialog] = useState(false);
+  const Close = (e) => {
+    setDialog((prev) => (prev = e));
+  };
+
+  const logoutHandler = () => {
+    setDialog((prev) => !prev);
   };
 
   //=============================================================Return=================================================================//
@@ -99,7 +140,7 @@ const Login = () => {
                   onChange={onChangeHandler}
                   name="password"
                   id="password"
-                  type={showPass?"text":"password"}
+                  type={showPass ? "text" : "password"}
                   placeholder="password"
                 />
                 <div
@@ -111,6 +152,7 @@ const Login = () => {
                   {showPass ? <FaEye /> : <FaEyeSlash />}
                 </div>
               </div>
+              <Link className="forget-password" onClick={()=>setDialog(true)}>Forget password?</Link>
               <input
                 onKeyDown={enterKeyHandler}
                 type="submit"
@@ -160,6 +202,7 @@ const Login = () => {
           </div>
         </div>
       </section>
+      {dialog ? <DialogForgetPass onDialog={Close} /> : null }
     </>
   );
 };

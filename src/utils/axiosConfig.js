@@ -96,6 +96,6 @@ export const postUserOrder=async(data,total)=>{
 
 //========================================================================================Get UserOrders
 export const getUserOrder=async()=>{
-  return await request({url:`orders?userId=${Cookies.get('daugid')}`})
+  return await request({url:`orders`})
 }
 

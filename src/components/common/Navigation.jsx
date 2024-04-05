@@ -1,7 +1,27 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+/** === Navigation ===
+ *
+ * This component represents the navigation menu.
+ * 
+ * Usage:
+ * - Header Component
+ *
+ * Layout:
+ * - nav: The main container for the navigation menu.
+ *   - navLinks: An array of objects representing the navigation links.
+ *     - NavLink: The link element for each navigation item.
+ *   - .overlay-container: Container for the overlay.
+ *     - .overlay: The overlay element.
+ *       - .overlayLinks: An array of objects representing the overlay links.
+ *         - .link-container: Container for each overlay link.
+ *           - <Link>: The link element for each overlay link.
+ *
+*/
 const Navigation = () => {
+
+  //Main NavLinks
   const navLinks = [
     { path: "/", label: "home" },
     { path:"/shop", label: "shop" },
@@ -10,23 +30,28 @@ const Navigation = () => {
     { path: "/policy", label: "policy" },
   ];
 
+  //Sub NavLinks ==> ShopLink
   const overlayLinks = [
     { path: "/shop/drive", label: "ogme drive" },
     { path: "/shop/bottles", label: "ogme bottles" },
     { path: "/shop/glassware", label: "ogme glassware" },
     { path: "/shop/suncatcher", label: "ogme suncatcher" },
+    { path: "/ask", label: "Customize" },
   ];
 
-  const [isHovered, setIsHovered] = useState(false);
-
+    //========================================================================================State
+    const [isHovered, setIsHovered] = useState(false);
+    
+    //========================================================================================Handler
+    //Hover Handler To Show an OverLay With SubLinks When Hover On ShopLink
   const mouseEnterHandler = () => {
     setIsHovered(true);
   };
-
   const mouseLeaveHandler = () => {
     setIsHovered(false);
   };
 
+  //===============================================================Return===============================================================//
   return (
     <>
       <nav>

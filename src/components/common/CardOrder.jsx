@@ -6,15 +6,48 @@ import {
   TbTruckDelivery,
 } from "react-icons/tb";
 
+/** === Orders Card ===
+ * 
+ * This component represents an order card
+ * it displays details an status information for an order
+ * 
+ * Usage:
+ * - MyOrders Page
+ * 
+ * Layout:
+ * - .card-order-container: the main container for the order card element
+ *  - .order-details: Container for order details information
+ *    - .info*3: Individual containers for each element detail
+ *      - .order-number: Container for the order number
+ *      - .total-price: Container for the total price of the order
+ *      - .expected-arrival: Container for the expected arrival date of the order 
+ *  - .progress-bar: Container for the progress bar
+ *    - .progress-bar-fill: The fill element indicating the progress of the order
+ *    - .check-marks: Container for the check marks indicating completion of each status
+ *      - .check*4: Individual check mark element
+ *  - .order-status: Container for order status
+ *    - .status-group*4: Individual containers for each order status
+ *      - <svg>: icon indicating the status
+ *      - <p>: Text for status name
+ */ 
 const CardOrder = ({processed, ready, out, delivered, orderNumber, orderPrice, arrivalDate}) => {
+
+  //========================================================================================States
+  //Order Progress Bar
   const [progress, setProgress] = useState();
-  const orderStatus = {
+
+  //========================================================================================Variables
+  //Current Order Status
+  const orderStatus = { 
     processed,
     ready,
     out,
     delivered,
   };
-  const orderProgressHandler = () => {
+
+  //========================================================================================Handlers
+ //Progress Bar Handler
+  const orderProgressHandler = () => { 
     if (orderStatus.delivered ) {
       setProgress(100);
     } else if (orderStatus.out ) {
@@ -25,11 +58,14 @@ const CardOrder = ({processed, ready, out, delivered, orderNumber, orderPrice, a
       setProgress(0);
     }
   };
-
+  
+  //========================================================================================UseEffect
+  //Progress Bar Tracking
   useEffect(() => {
     orderProgressHandler();
   }, [orderStatus]);
 
+  //==================================================================Return======================================================//
   return (
     <>
       <div className="card-order-container">
