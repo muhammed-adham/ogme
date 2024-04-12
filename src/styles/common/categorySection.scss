@@ -14,15 +14,20 @@
   .cards-container {
     width: 98.9vw;
     display: flex;
-    .cards {
-      overflow: hidden;
-      padding-bottom: 1rem;
-      cursor: grab;
-      display: flex;
-      gap: 1.875rem;
-      padding-inline: 9.25rem;
-      user-select: none;
-    }
+    // .cards {
+    //   user-select: none;
+    //   overflow-x: hidden;
+    //   padding-bottom: 1rem;
+    //   cursor: grab;
+    //   display: flex;
+    //   gap: 1.875rem;
+    //   padding-inline: 9.25rem;
+    //   scroll-snap-stop: normal;
+    //   .card{
+    //     // transform: translateX(-300px);
+    //     scroll-snap-align: center;
+    //   }
+    // }
   }
   .btn {
     @include btn-pr-default;

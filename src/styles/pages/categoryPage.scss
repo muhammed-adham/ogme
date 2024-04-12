@@ -10,11 +10,12 @@
             width: 32rem;
         }
         .cards-container{
+            width: 100%;
             .cards{
-                display: flex;
+                 display: flex;
                 flex-wrap: wrap;
-                justify-content: flex-start;
-                gap: 4.25rem;
+                justify-content: space-between;
+                row-gap: 4.25rem;
             }
         }
     }

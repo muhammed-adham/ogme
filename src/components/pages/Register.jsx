@@ -97,7 +97,7 @@ const Register = () => {
 
   //========================================================================================Handle input Data
   const [userData, setUserData] = useState({
-    name: "",
+    userName: "",
     email: "",
     phone: "",
     password: "",
@@ -109,7 +109,19 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  //========================================================================================Handle input Data ForMobile
+  const [inputData,setInputData]=useState({
+    userNamer: "",
+    email: "",
+    phone: "",
+    password: "",
+  })
+  const onInputHandler=(e)=>{
+    setInputData({
+      ...inputData,
+      [e.target.name]:e.target.value
+    })
+  }
   //=============================================================Return=================================================================//
   return (
     <>
@@ -126,18 +138,22 @@ const Register = () => {
             <form action="" onSubmit={submitHandler}>
               <div className="form-group">
                 <input
+                onInput={onInputHandler}
+                value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="name"
                   onChange={onChangeHandler}
-                  name="name"
-                  id="name"
+                  name="userName"
+                  id="userName"
                   type="text"
                   placeholder="full name"
                 />
               </div>
               <div className="form-group">
                 <input
+                onInput={onInputHandler}
+                value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="email"
@@ -150,6 +166,8 @@ const Register = () => {
               </div>
               <div className="form-group">
                 <input
+                onInput={onInputHandler}
+                value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="tel"
@@ -162,6 +180,8 @@ const Register = () => {
               </div>
               <div className="form-group form-pass">
                 <input
+                onInput={onInputHandler}
+                value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="off"

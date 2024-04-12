@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -31,6 +31,16 @@ const Footer = () => {
     { path: "/fqa", label: "FAQ" }
   ];
 
+  //========================================================================================Handle input Data ForMobile
+  const [inputData,setInputData]=useState({
+    email: "",
+  })
+  const onInputHandler=(e)=>{
+    setInputData({
+      ...inputData,
+      [e.target.name]:e.target.value
+    })
+  }
   //==================================================================Return======================================================//
   return (
     <footer>
@@ -43,8 +53,7 @@ const Footer = () => {
           </p>
         </div>
         <div className="email-input">
-          <input type="email" placeholder="Enter your email" />
-          {/* <p>Enter your email</p> */}
+          <input type="email" placeholder="Enter your email" onInput={onInputHandler} value={inputData.name}/>
           <HiOutlineMail />
         </div>
       </div>

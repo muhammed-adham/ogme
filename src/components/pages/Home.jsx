@@ -15,7 +15,7 @@ const Home = () => {
   //=============================================================Return=================================================================//
   return (
     <>
-      <Banner videoSrc={"images/banner/main-banner.MP4"}/>
+      <Banner videoSrc={"images/banner/main-banner.mp4"}/>
 
       <CategorySection
       categoryPagePath={"/shop/drive"}
@@ -43,7 +43,7 @@ const Home = () => {
       />
       <section className="meet-artist" style={{backgroundImage:"url(/images/banner/artist.jpg)"}}>
         <h2>meet the artist</h2>
-        <Link to={"/about"} onClick={() => scroll(0,580)} className="btn">read more</Link>
+        <Link to={"/about"} onClick={() => scroll(0,570)} className="btn">read more</Link>
       </section>
     </>
   );

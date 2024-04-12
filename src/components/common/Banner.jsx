@@ -24,7 +24,7 @@ const Banner = ({ videoSrc, imgSrc, currentPage }) => {
     <>
       <section className="banner">
         {videoSrc ? (
-          <video src={videoSrc} autoPlay muted loop></video>
+          <video src={videoSrc} autoPlay={true} muted playsInline loop={true} controls={false}></video>
         ) : (
           <img src={imgSrc} alt="banner image" />
         )}

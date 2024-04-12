@@ -62,7 +62,7 @@ const Menu = () => {
                   <Link
                     key={idx}
                     to={link.path}
-                    onClick={link.label == "shop" ? shopForward : ()=>scroll(0,0)}
+                    onClick={link.label == "shop" ? shopForward : ()=>(scroll(0,0),menuBtnHandler())}
                   >
                     {link.label == "shop" ? (
                       <>

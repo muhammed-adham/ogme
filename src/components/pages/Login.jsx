@@ -95,6 +95,17 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
+  //========================================================================================Handle input Data ForMobile
+  const [inputData,setInputData]=useState({
+    email: "",
+    password: "",
+  })
+  const onInputHandler=(e)=>{
+    setInputData({
+      ...inputData,
+      [e.target.name]:e.target.value
+    })
+  }
 
   //========================================================================================Dialog Handler
   const [dialog, setDialog] = useState(false);
@@ -122,6 +133,8 @@ const Login = () => {
             <form action="" onSubmit={submitHandler}>
               <div className="form-group">
                 <input
+                onInput={onInputHandler}
+                value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="email"
@@ -134,6 +147,8 @@ const Login = () => {
               </div>
               <div className="form-group form-pass">
                 <input
+                onInput={onInputHandler}
+                value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="off"

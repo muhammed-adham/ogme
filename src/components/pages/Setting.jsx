@@ -43,20 +43,37 @@ const Setting = () => {
   const enterKeyHandler = (e) => {
     e.key === "Enter" ? submitHandler(e) : null;
   };
-  
+
   // const [newUserData,setNewUserData]=useState()
   const onChangeHandler = (e) => {
     setStatUsereData({
       ...stateUserData,
       [e.target.name]: e.target.value,
     });
-};
+  };
 
-const submitHandler = (e) => {
-    e.preventDefault(); 
-    patchUserData(stateUserData)
-    toast.success('Updated Successfully')
-  }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    patchUserData(stateUserData);
+    toast.success("Updated Successfully");
+  };
+  //========================================================================================Handle input Data ForMobile
+  const [inputData, setInputData] = useState({
+    userNamer: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    bulding: "",
+    floor: "",
+    apt: "",
+  });
+  const onInputHandler = (e) => {
+    setInputData({
+      ...inputData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   //==================================================================Return========================================================//
   return (
@@ -68,20 +85,32 @@ const submitHandler = (e) => {
               <h2>profile information</h2>
             </div>
             <div className="form-container">
-              <form action="" >
-                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
+              <form action="">
+                <input
+                  onInput={onInputHandler}
+                  value={inputData.name}
+                  onKeyDown={enterKeyHandler}
+                  onChange={onChangeHandler}
                   defaultValue={stateUserData?.name}
-                  name="name"
-                  id="name"
+                  name="userName"
+                  id="userName"
                   type="text"
                 />
-                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
+                <input
+                  onInput={onInputHandler}
+                  value={inputData.name}
+                  onKeyDown={enterKeyHandler}
+                  onChange={onChangeHandler}
                   defaultValue={stateUserData?.email}
                   name="email"
                   id="email"
                   type="text"
                 />
-                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
+                <input
+                  onInput={onInputHandler}
+                  value={inputData.name}
+                  onKeyDown={enterKeyHandler}
+                  onChange={onChangeHandler}
                   defaultValue={stateUserData?.phone}
                   name="phone"
                   id="phone"
@@ -96,36 +125,66 @@ const submitHandler = (e) => {
             </div>
             <div className="form-container">
               <form action="">
-                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
-                  defaultValue={stateUserData!==null?stateUserData?.address:null}
+                <input
+                  onInput={onInputHandler}
+                  value={inputData.name}
+                  onKeyDown={enterKeyHandler}
+                  onChange={onChangeHandler}
+                  defaultValue={
+                    stateUserData !== null ? stateUserData?.address : null
+                  }
                   name="address"
                   id="address"
                   type="text"
                   placeholder="Address"
                 />
-                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
-                  defaultValue={stateUserData!==null?stateUserData?.city:null}
+                <input
+                  onInput={onInputHandler}
+                  value={inputData.name}
+                  onKeyDown={enterKeyHandler}
+                  onChange={onChangeHandler}
+                  defaultValue={
+                    stateUserData !== null ? stateUserData?.city : null
+                  }
                   name="city"
                   id="city"
                   type="text"
                   placeholder="City"
                 />
-                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
-                  defaultValue={stateUserData!==null?stateUserData?.bulding:null}
+                <input
+                  onInput={onInputHandler}
+                  value={inputData.name}
+                  onKeyDown={enterKeyHandler}
+                  onChange={onChangeHandler}
+                  defaultValue={
+                    stateUserData !== null ? stateUserData?.bulding : null
+                  }
                   name="bulding"
                   id="bulding"
                   type="text"
                   placeholder="Bulding No"
                 />
-                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
-                  defaultValue={stateUserData!==null?stateUserData?.floor:null}
+                <input
+                  onInput={onInputHandler}
+                  value={inputData.name}
+                  onKeyDown={enterKeyHandler}
+                  onChange={onChangeHandler}
+                  defaultValue={
+                    stateUserData !== null ? stateUserData?.floor : null
+                  }
                   name="floor"
                   id="floor"
                   type="text"
                   placeholder="Floor No"
                 />
-                <input onKeyDown={enterKeyHandler} onChange={onChangeHandler}
-                  defaultValue={stateUserData!==null?stateUserData?.apt:null}
+                <input
+                  onInput={onInputHandler}
+                  value={inputData.name}
+                  onKeyDown={enterKeyHandler}
+                  onChange={onChangeHandler}
+                  defaultValue={
+                    stateUserData !== null ? stateUserData?.apt : null
+                  }
                   name="apt"
                   id="apt"
                   type="text"
@@ -134,7 +193,12 @@ const submitHandler = (e) => {
               </form>
             </div>
           </div>
-          <input onKeyDown={enterKeyHandler} type="submit" value={"save all"} onClick={submitHandler}/>
+          <input
+            onKeyDown={enterKeyHandler}
+            type="submit"
+            value={"save all"}
+            onClick={submitHandler}
+          />
         </div>
       </div>
     </>
