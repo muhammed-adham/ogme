@@ -48,6 +48,7 @@
           width: 100%;
           background-color: transparent;
           border:none;
+          border-radius:0;
           border-bottom: 1px solid black;
           &::placeholder {
             text-transform: capitalize;
@@ -63,7 +64,7 @@
           @include btn-pr-default;
           width: 100%;
           font-size: 0.8rem;
-          min-height: 2rem;
+          min-height: 24px;
           margin-top: 1.5rem;
         }
         .form-pass{
