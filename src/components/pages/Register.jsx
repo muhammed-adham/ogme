@@ -214,6 +214,7 @@ const Register = () => {
                   fontSize: ".75rem",
                   padding: ".75rem",
                   width: "100%",
+                  height: "40px"
                 }}
                 // callback={this.responseFacebook}
               />
