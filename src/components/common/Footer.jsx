@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
         <div className="terms">
           {termLinks.map((li,idx)=>(
-            <Link key={idx} to={li.path} onClick={()=>scroll({left:0,top:0,behavior:"smooth"})}>{li.label}</Link>
+            <Link key={idx} to={li.path} onClick={()=>scroll(0,0)}>{li.label}</Link>
           ))}
         </div>
       </div>

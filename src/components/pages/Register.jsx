@@ -204,7 +204,7 @@ const Register = () => {
             </form>
             <p>or</p>
             <div className="outh">
-              <GoogleLogin theme="outline" text="continue_with" size="large"/>
+              <GoogleLogin theme="outline" text="continue_with"/>
               <FacebookLogin
                 textButton="continue with facebook"
                 appId="YOUR_APP_ID"
