@@ -115,9 +115,11 @@ const CategorySection = ({
           <div className="cards-container">
             <Swiper
               spaceBetween={isMobile?15:30}
+              slide
               slidesPerView={isMobile ? 1 : isTablet ? 2 : 3}
               onSlideChange={() => console.log("slide change")}
               onSwiper={(swiper) => console.log(swiper)}
+              width={isMobile ? 290 : isTablet ? 650 : 1500}
               style={{
                 paddingInline: `${isTablet ? "3rem" : "9.25rem"}`,
                 paddingBlock: "1rem",
