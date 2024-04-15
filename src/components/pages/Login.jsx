@@ -186,7 +186,11 @@ const Login = () => {
                   fontSize: ".75rem",
                   padding: ".75rem",
                   width: "100%",
-                  height: "40px"
+                  height: "40px",
+                  fontFamily: "Raleway",
+                  fontWeight:500,
+                  textTransform:"capitalize",
+                  fontSize: "14px"
                 }}
                 // callback={this.responseFacebook}
               />

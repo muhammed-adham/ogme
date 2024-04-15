@@ -60,7 +60,7 @@
         input[type="submit"] {
           @include btn-pr-default;
           width: 100%;
-          font-size: 0.8rem;
+          font-size: 16px;
           margin-top: 1.5rem;
         }
         .form-pass {
@@ -126,6 +126,7 @@
       }
       .react-apple-signin-auth-btn-dark{
         height: 40px;
+        font-size: 16px;
       }
     }
     .you-agree {
