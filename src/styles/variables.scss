@@ -28,6 +28,10 @@ $main-font: "Raleway", sans-serif;
 
 @mixin btn-pr-default{
   @include ff-link;
+  height: fit-content;
+  min-height: 32px; 
+  -webkit-appearance: none;
+  border-radius: 0;
   padding: 1rem;
   width: fit-content;
   display: flex;

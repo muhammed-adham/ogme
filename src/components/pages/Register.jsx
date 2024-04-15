@@ -2,7 +2,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FacebookLogin from "react-facebook-login";
-import AppleLogin from "react-apple-login";
+import AppleSignin from "react-apple-signin-auth";
 import { postNewUser } from "../../utils/axiosConfig";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
@@ -90,7 +90,7 @@ const Register = () => {
       postNewUser(userData).then(() => {
         history.replaceState(null, "", "/"), //prevent go back after signup
           Cookies.get("token") ? navigate("/") : null;
-          toast.success(`Welcome ${userData.name}`)
+        toast.success(`Welcome ${userData.name}`);
       });
     }
   };
@@ -110,18 +110,18 @@ const Register = () => {
     });
   };
   //========================================================================================Handle input Data ForMobile
-  const [inputData,setInputData]=useState({
+  const [inputData, setInputData] = useState({
     userNamer: "",
     email: "",
     phone: "",
     password: "",
-  })
-  const onInputHandler=(e)=>{
+  });
+  const onInputHandler = (e) => {
     setInputData({
       ...inputData,
-      [e.target.name]:e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
   //=============================================================Return=================================================================//
   return (
     <>
@@ -138,8 +138,8 @@ const Register = () => {
             <form action="" onSubmit={submitHandler}>
               <div className="form-group">
                 <input
-                onInput={onInputHandler}
-                value={inputData.name}
+                  onInput={onInputHandler}
+                  value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="name"
@@ -152,8 +152,8 @@ const Register = () => {
               </div>
               <div className="form-group">
                 <input
-                onInput={onInputHandler}
-                value={inputData.name}
+                  onInput={onInputHandler}
+                  value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="email"
@@ -166,8 +166,8 @@ const Register = () => {
               </div>
               <div className="form-group">
                 <input
-                onInput={onInputHandler}
-                value={inputData.name}
+                  onInput={onInputHandler}
+                  value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="tel"
@@ -180,8 +180,8 @@ const Register = () => {
               </div>
               <div className="form-group form-pass">
                 <input
-                onInput={onInputHandler}
-                value={inputData.name}
+                  onInput={onInputHandler}
+                  value={inputData.name}
                   onKeyDown={enterKeyHandler}
                   // required
                   autoComplete="off"
@@ -204,7 +204,7 @@ const Register = () => {
             </form>
             <p>or</p>
             <div className="outh">
-              <GoogleLogin theme="outline" text="continue_with" />
+              <GoogleLogin theme="outline" text="continue_with" size="large"/>
               <FacebookLogin
                 textButton="continue with facebook"
                 appId="YOUR_APP_ID"
@@ -214,26 +214,15 @@ const Register = () => {
                   fontSize: ".75rem",
                   padding: ".75rem",
                   width: "100%",
-                  height: "40px"
+                  height: "40px",
+                  fontFamily: "Raleway",
+                  fontWeight:500,
+                  textTransform:"capitalize",
+                  fontSize: "14px"
                 }}
                 // callback={this.responseFacebook}
               />
-              <div className="apple-btn">
-                <AppleLogin
-                  designProp={{
-                    scale: 6,
-                    height: 30,
-                    width: 375,
-                    type: "continue",
-                  }}
-                  // clientId="your-client-id"
-                  // redirectURI="your-redirect-uri"
-                  // responseType="code"
-                  // responseMode="form_post"
-                  // onSuccess={handleAppleLoginSuccess}
-                  // onFailure={handleAppleLoginFailure}
-                />
-              </div>
+              <AppleSignin />
             </div>
           </div>
           <div className="you-agree">

@@ -9,12 +9,12 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    .title{
+    .title {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1rem;
-      h2{
+      h2 {
         font-size: 2.488rem;
       }
       p {
@@ -44,11 +44,11 @@
         gap: 1rem;
         width: 45%;
         input {
-          padding: 1rem 1rem 1rem .25rem;
+          padding: 1rem 1rem 1rem 0.25rem;
           width: 100%;
           background-color: transparent;
-          border:none;
-          border-radius:0;
+          border: none;
+          border-radius: 0;
           border-bottom: 1px solid black;
           &::placeholder {
             text-transform: capitalize;
@@ -56,35 +56,31 @@
           &:focus {
             outline: none;
           }
-          // &:required{
-          //   &::placeholder{color: $danger}
-          // }
         }
         input[type="submit"] {
           @include btn-pr-default;
           width: 100%;
           font-size: 0.8rem;
-          min-height: 24px;
           margin-top: 1.5rem;
         }
-        .form-pass{
+        .form-pass {
           position: relative;
-          .eye-icon{
-            opacity: .5;
+          .eye-icon {
+            opacity: 0.5;
             cursor: pointer;
             position: absolute;
             top: 40%;
             right: 0;
-            &:hover{
+            &:hover {
               opacity: 1;
             }
           }
         }
-        .forget-password{
+        .forget-password {
           align-self: flex-end;
-          font-size: .9rem;
-          opacity: .5;
-          &:hover{
+          font-size: 0.9rem;
+          opacity: 0.5;
+          &:hover {
             opacity: 1;
           }
         }
@@ -123,11 +119,16 @@
         width: 45%;
         gap: 1rem;
       }
-      .apple-btn{
-        cursor: pointer;
+      .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-BPrWId{
+        font-family: Raleway;
+        text-transform: capitalize;
+        font-weight: 600;
+      }
+      .react-apple-signin-auth-btn-dark{
+        height: 40px;
       }
     }
-    .you-agree{
+    .you-agree {
       font-size: 0.8rem;
       display: flex;
       gap: 1rem;
@@ -139,9 +140,9 @@
 }
 
 //========================================================================================Feature Classes
-.required{
+.required {
   // border-bottom: 1px solid $danger !important;
-  &::placeholder{
+  &::placeholder {
     color: $danger;
   }
 }
@@ -153,5 +154,3 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
-
-

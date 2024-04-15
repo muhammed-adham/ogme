@@ -2,7 +2,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FacebookLogin from "react-facebook-login";
-import AppleLogin from "react-apple-login";
+import AppleSignin from 'react-apple-signin-auth';
 import { axiosLoginUser, postNewUser } from "../../utils/axiosConfig";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
@@ -186,25 +186,11 @@ const Login = () => {
                   fontSize: ".75rem",
                   padding: ".75rem",
                   width: "100%",
+                  height: "40px"
                 }}
                 // callback={this.responseFacebook}
               />
-              <div className="apple-btn">
-                <AppleLogin
-                  designProp={{
-                    scale: 6,
-                    height: 30,
-                    width: 375,
-                    type: "continue",
-                  }}
-                  // clientId="your-client-id"
-                  // redirectURI="your-redirect-uri"
-                  // responseType="code"
-                  // responseMode="form_post"
-                  // onSuccess={handleAppleLoginSuccess}
-                  // onFailure={handleAppleLoginFailure}
-                />
-              </div>
+              <AppleSignin/>
             </div>
           </div>
           <div className="you-agree">
