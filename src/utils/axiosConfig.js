@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const axiosConfig = axios.create({ baseURL: "http://localhost:3000" });
+const axiosConfig = axios.create({ baseURL: "https://ogme-server.onrender.com" });
 export const request = ({ ...option }) => {
   //   axiosConfig.defaults.headers.common.Authorization = "Bearer token";
   axiosConfig.defaults.headers.common.Accept = "application/json";
