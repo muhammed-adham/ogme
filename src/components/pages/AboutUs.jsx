@@ -65,7 +65,7 @@ const AboutUs = () => {
             <div className="artist-pic">
               <img src="/images/artist-pp.jpg" alt="artist picture" />
             </div>
-            <p>Muhammed Atef</p>
+            <p>Muhammed Adham</p>
               <div className="social-icons">
 
                 <Link
